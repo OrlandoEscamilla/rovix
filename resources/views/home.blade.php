@@ -16,19 +16,21 @@
                         <div class="col-md-10 col-md-offset-1">
                             <div class="card card-raised card-form-horizontal">
                                 <div class="content">
-                                    <form method="" action="">
+                                    {!! Form::open(['method' => 'GET', 'url' => '/buscar']) !!}
+                                    {{--<form method="get" action="{{url('/buscar')}}">--}}
                                         <div class="row">
                                             <div class="col-md-9">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control text-center"
+                                                    <input type="text" class="form-control text-center" name="searching"
                                                            style="font-weight: bold">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
-                                                <button type="button" class="btn btn-primary btn-block">Buscar</button>
+                                                <input type="submit" class="btn btn-primary btn-block" value="Buscar"/>
                                             </div>
                                         </div>
-                                    </form>
+                                    {{--</form>--}}
+                                    {!! Form::close() !!}
                                 </div>
                             </div>
                         </div>

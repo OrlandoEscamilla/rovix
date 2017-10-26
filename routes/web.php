@@ -11,6 +11,9 @@
 |
 */
 
+use App\Type;
+use Illuminate\Http\Request;
+
 Route::get('/', function () {
     return view('home');
 });
@@ -26,3 +29,11 @@ Route::get('/recursos', function(){
 Route::get('/perfil', function(){
     return view('profile');
 });
+
+Route::get('/buscar', 'MainController@buscar');
+
+Route::get('/types', function (){
+    $tipos = Type::all();
+    dd($tipos);
+});
+
