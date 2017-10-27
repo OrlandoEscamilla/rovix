@@ -18,17 +18,17 @@
                                 <div class="content">
                                     {!! Form::open(['method' => 'GET', 'url' => '/buscar']) !!}
                                     {{--<form method="get" action="{{url('/buscar')}}">--}}
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control text-center" name="searching"
-                                                           style="font-weight: bold">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <input type="submit" class="btn btn-primary btn-block" value="Buscar"/>
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control text-center" name="searching"
+                                                       style="font-weight: bold">
                                             </div>
                                         </div>
+                                        <div class="col-md-3">
+                                            <input type="submit" class="btn btn-primary btn-block" value="Buscar"/>
+                                        </div>
+                                    </div>
                                     {{--</form>--}}
                                     {!! Form::close() !!}
                                 </div>
@@ -51,9 +51,12 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <h2 class="title">Estos son los tipos de recursos que encontrarás:</h2>
-                        <h5 class="description">This is the paragraph where you can write more details about your product.
-                            Keep you user engaged by providing meaningful information. Remember that by this time, the user
-                            is curious, otherwise he wouldn't scroll to get here. Add a button if you want the user to see
+                        <h5 class="description">This is the paragraph where you can write more details about your
+                            product.
+                            Keep you user engaged by providing meaningful information. Remember that by this time, the
+                            user
+                            is curious, otherwise he wouldn't scroll to get here. Add a button if you want the user to
+                            see
                             more.</h5>
                     </div>
                 </div>
@@ -134,6 +137,28 @@
 
         </div>
 
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                @if(!session('usuario_id', ''))
+                    <h1>¿Interesado en participar y compartir?</h1>
+                    <a href="{{url( session('usuario_id', '') != '' ? '#' : '/login/github')}}"
+                       class="btn btn-github btn-lg">
+                        Entrar con Github
+                        <i class="fa fa-github"></i>
+                    </a>
+                @else
+                    <h1>¡Empieza a compartir tu conocimiento con la comunidad!</h1>
+                    <br>
+                    <a href="{{url('/resource')}}" class="btn btn-github btn-lg">
+                        Agregar recurso
+                        <i class="fa fa-cubes"></i>
+                    </a>
+                @endif
+            </div>
+        </div>
     </div>
 
 @stop

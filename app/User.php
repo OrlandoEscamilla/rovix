@@ -26,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function resources()
+    {
+        return $this->hasMany('App\Resource');
+    }
+
+    public function githubUser()
+    {
+        return $this->hasOne('App\GitHubUser', 'id');
+    }
 }

@@ -44,7 +44,7 @@
                                 <span class="text-gray hidden-xs pull-right">Agregado por {{$recurso->user}} {{Carbon\Carbon::parse($recurso->created_at)->diffForHumans()}}</span>
                             </h4>
                             <p>{{$recurso->description}}</p>
-                            <a href="#" class="btn btn-link"><i>Ir al sitio!</i></a>
+                            <a href="{{$recurso->link}}" target="_blank" class="btn btn-link"><i>Ir al sitio!</i></a>
                             @if(session('usuario_id', ''))
                                 <button class="btn btn-success btn-fav" data-id="{{$recurso->id}}">
                                     <span class="star-counter">{{ count(\App\Resource::find($recurso->id)->stars) }}</span>

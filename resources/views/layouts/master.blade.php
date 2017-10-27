@@ -33,21 +33,23 @@
 
         <div class="collapse navbar-collapse" id="navigation-example">
             <ul class="nav navbar-nav navbar-right">
+                @if(!session('usuario_id') == '')
                 <li>
                     <a href="{{url('/perfil')}}">
                         PERFIL
                     </a>
                 </li>
                 <li>
-                    <a href="{{url('/recursos')}}">
+                    <a href="{{url('/resource')}}">
                         RECURSOS
                     </a>
                 </li>
                 <li>
-                    <a href="{{url('/')}}">
-                        {{--<i class="material-icons">apps</i>--}} SALIR
+                    <a href="{{url('/logout')}}">
+                        SALIR
                     </a>
                 </li>
+                @endif
                 <li>
                     <a href="{{url('/about')}}">
                         ABOUT

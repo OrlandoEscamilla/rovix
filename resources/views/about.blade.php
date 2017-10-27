@@ -16,8 +16,7 @@
                         lenguaje, etc... Ya sea que hallas leído algún libro, visto vídeos en Youtube o comprado cursos
                         en plataformas de pago puedes venir aquí y compartir tu experiencia sobre cual y como dicho
                         material te ayudo a aprender. Aquí encontrarás con una comunidad de programadores que esta en
-                        constante
-                        crecimiento y hambrientos de aprender y dominar nuevas herramientas.
+                        constante crecimiento y hambrientos de aprender y dominar nuevas herramientas.
                     </p>
                 </div>
             </div>

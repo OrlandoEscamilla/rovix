@@ -11,9 +11,6 @@
 |
 */
 
-use App\Type;
-use Illuminate\Http\Request;
-
 Route::get('/', function () {
     return view('home');
 });
@@ -22,18 +19,18 @@ Route::get('/about', function(){
     return view('about');
 });
 
-Route::get('/recursos', function(){
-    return view('recursos');
-});
-
 Route::get('/perfil', function(){
     return view('profile');
 });
 
-Route::get('/buscar', 'MainController@buscar');
-
-Route::get('/types', function (){
-    $tipos = Type::all();
-    dd($tipos);
+Route::get('/recursos', function(){
+    return view('recursos');
 });
 
+Route::get('/buscar', 'MainController@buscar');
+
+Route::resource('resource', 'ResourceController');
+
+Route::get('/login/{provider}', 'LoginController@redirectToProvider');
+Route::get('/login/{provider}/callback', 'LoginController@handleProviderCallback');
+Route::get('/logout', 'LoginController@logout');
