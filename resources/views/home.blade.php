@@ -6,7 +6,7 @@
 
         <div class="header-2">
 
-            <div class="page-header header-filter" style="background-image: url('/img/examples/office2.jpg');">
+            <div class="page-header header-filter" style="background-image: url('/img/examples/card-project5.jpg');">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 text-center">
@@ -14,22 +14,21 @@
                             <h4>Aquí puedes buscar recursos para la tecnología que te interesa aprender:</h4>
                         </div>
                         <div class="col-md-10 col-md-offset-1">
-                            <div class="card card-raised card-form-horizontal">
+                            <div class="card card-form-horizontal">
                                 <div class="content">
                                     {!! Form::open(['method' => 'GET', 'url' => '/buscar']) !!}
-                                    {{--<form method="get" action="{{url('/buscar')}}">--}}
                                     <div class="row">
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="text" class="form-control text-center" name="searching"
-                                                       style="font-weight: bold">
+                                                       style="font-weight: bold; text-transform: uppercase;"
+                                                       autocomplete="off">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <input type="submit" class="btn btn-primary btn-block" value="Buscar"/>
                                         </div>
                                     </div>
-                                    {{--</form>--}}
                                     {!! Form::close() !!}
                                 </div>
                             </div>
@@ -51,13 +50,13 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <h2 class="title">Estos son los tipos de recursos que encontrarás:</h2>
-                        <h5 class="description">This is the paragraph where you can write more details about your
-                            product.
-                            Keep you user engaged by providing meaningful information. Remember that by this time, the
-                            user
-                            is curious, otherwise he wouldn't scroll to get here. Add a button if you want the user to
-                            see
-                            more.</h5>
+                        {{--<h5 class="description">This is the paragraph where you can write more details about your
+                            product. Keep you user engaged by providing meaningful information. Remember that by this
+                            time, the
+                            user is curious, otherwise he wouldn't scroll to get here. Add a button if you want the user
+                            to
+                            see more.
+                        </h5>--}}
                     </div>
                 </div>
 
@@ -68,8 +67,8 @@
                                 <i class="material-icons">book</i>
                             </div>
                             <h4 class="info-title">Libros</h4>
-                            <p>Divide details about your product or agency work into parts. Write a few lines about each
-                                one. A paragraph describing a feature will be enough.</p>
+                            {{--<p>Divide details about your product or agency work into parts. Write a few lines about each
+                                one. A paragraph describing a feature will be enough.</p>--}}
                         </div>
                     </div>
 
@@ -80,8 +79,8 @@
                                 <i class="fa fa-youtube"></i>
                             </div>
                             <h4 class="info-title">Canales</h4>
-                            <p>Divide details about your product or agency work into parts. Write a few lines about each
-                                one. A paragraph describing a feature will be enough.</p>
+                            {{--<p>Divide details about your product or agency work into parts. Write a few lines about each
+                                one. A paragraph describing a feature will be enough.</p>--}}
                         </div>
                     </div>
 
@@ -91,8 +90,8 @@
                                 <i class="material-icons">desktop_mac</i>
                             </div>
                             <h4 class="info-title">Cursos en linea</h4>
-                            <p>Divide details about your product or agency work into parts. Write a few lines about each
-                                one. A paragraph describing a feature will be enough.</p>
+                            {{--<p>Divide details about your product or agency work into parts. Write a few lines about each
+                                one. A paragraph describing a feature will be enough.</p>--}}
                         </div>
                     </div>
 
@@ -102,8 +101,8 @@
                                 <i class="material-icons">rss_feed</i>
                             </div>
                             <h4 class="info-title">Guías y Blogs</h4>
-                            <p>Divide details about your product or agency work into parts. Write a few lines about each
-                                one. A paragraph describing a feature will be enough.</p>
+                            {{--<p>Divide details about your product or agency work into parts. Write a few lines about each
+                                one. A paragraph describing a feature will be enough.</p>--}}
                         </div>
                     </div>
 
@@ -114,8 +113,8 @@
                                 <i class="fa fa-git"></i>
                             </div>
                             <h4 class="info-title">Repositorios</h4>
-                            <p>Divide details about your product or agency work into parts. Write a few lines about each
-                                one. A paragraph describing a feature will be enough.</p>
+                            {{--<p>Divide details about your product or agency work into parts. Write a few lines about each
+                                one. A paragraph describing a feature will be enough.</p>--}}
                         </div>
                     </div>
 
@@ -125,8 +124,8 @@
                                 <i class="fa fa-podcast"></i>
                             </div>
                             <h4 class="info-title">Podcasts</h4>
-                            <p>Divide details about your product or agency work into parts. Write a few lines about each
-                                one. A paragraph describing a feature will be enough.</p>
+                            {{--<p>Divide details about your product or agency work into parts. Write a few lines about each--}}
+                            {{--one. A paragraph describing a feature will be enough.</p>--}}
                         </div>
                     </div>
                 </div>

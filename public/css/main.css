@@ -1,0 +1,22 @@
+/*html, body {
+    min-height: 100vh;
+    position: relative;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    !*right: 0;
+    left: 0;*!
+}*/
+
+/*.header-2 .page-header .container {
+    padding-top: 25vh;
+}*/
+
+@media (max-width: 767px) {
+    .header-2 .page-header .container {
+        padding-top: 8vh;
+    }
+}

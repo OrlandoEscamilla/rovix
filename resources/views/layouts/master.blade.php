@@ -14,6 +14,7 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/css/material-kit.css" rel="stylesheet"/>
     <link href="/css/vertical-nav.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/main.css">
     <title>MKV - Rovix</title>
 </head>
 <body class="section-white">
@@ -34,21 +35,21 @@
         <div class="collapse navbar-collapse" id="navigation-example">
             <ul class="nav navbar-nav navbar-right">
                 @if(!session('usuario_id') == '')
-                <li>
-                    <a href="{{url('/perfil')}}">
-                        PERFIL
-                    </a>
-                </li>
-                <li>
-                    <a href="{{url('/resource')}}">
-                        RECURSOS
-                    </a>
-                </li>
-                <li>
-                    <a href="{{url('/logout')}}">
-                        SALIR
-                    </a>
-                </li>
+                    <li>
+                        <a href="{{url('/perfil')}}">
+                            PERFIL
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url('/resource')}}">
+                            RECURSOS
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url('/logout')}}">
+                            SALIR
+                        </a>
+                    </li>
                 @endif
                 <li>
                     <a href="{{url('/about')}}">
@@ -64,10 +65,12 @@
 <div class="section-space"></div>
 
 <div class="container">
-    @yield('content')
+    <div class="row">
+        @yield('content')
+    </div>
 </div>
 
-<footer class="footer footer-black">
+<footer id="footer" class="footer footer-black">
     <div class="container">
         <a class="footer-brand" href="#pablo">Rovix</a>
 
@@ -131,7 +134,7 @@
 <script src="/js/jasny-bootstrap.min.js"></script>
 
 <!-- Plugin For Google Maps -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+{{--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>--}}
 
 <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
 <script src="/js/material-kit.js" type="text/javascript"></script>
@@ -141,9 +144,20 @@
 <script src="/assets-for-demo/vertical-nav.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    $().ready(function () {
+    /*$().ready(function () {
 
-        materialKitDemo.initContactUs2Map();
+     materialKitDemo.initContactUs2Map();
+     });*/
+
+    $(document).ready(function () {
+
+        var docHeight = $(window).height();
+        var footerHeight = $('#footer').height();
+        var footerTop = $('#footer').position().top + footerHeight;
+
+        if (footerTop < docHeight) {
+            $('#footer').css('margin-top', 10 + (docHeight - footerTop) + 'px');
+        }
     });
 </script>
 
