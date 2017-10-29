@@ -65,9 +65,9 @@
 <div class="section-space"></div>
 
 <div class="container">
-    <div class="row">
+    {{--<div class="row">--}}
         @yield('content')
-    </div>
+    {{--</div>--}}
 </div>
 
 <footer id="footer" class="footer footer-black">

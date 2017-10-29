@@ -20,3 +20,19 @@ footer {
         padding-top: 8vh;
     }
 }
+
+.card .content .category {
+    padding-top:6px;
+    float: right;
+}
+
+.btn-star {
+    padding: 5px 10px !important;
+    border: 1px solid;
+}
+
+.btn-star:hover,
+.btn-star:active,
+.btn-star:visited {
+    border: 1px solid !important;
+}
