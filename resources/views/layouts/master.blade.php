@@ -19,48 +19,7 @@
 </head>
 <body class="section-white">
 
-<nav class="navbar navbar-danger navbar-fixed-top" id="sectionsNav">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{url('/')}}">ROVIX</a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="navigation-example">
-            <ul class="nav navbar-nav navbar-right">
-                @if(!session('usuario_id') == '')
-                    <li>
-                        <a href="{{url('/perfil')}}">
-                            PERFIL
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{url('/resource')}}">
-                            RECURSOS
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{url('/logout')}}">
-                            SALIR
-                        </a>
-                    </li>
-                @endif
-                <li>
-                    <a href="{{url('/about')}}">
-                        ABOUT
-                    </a>
-                </li>
-
-            </ul>
-        </div>
-    </div>
-</nav>
+@include('partials.nav')
 
 <div class="section-space"></div>
 
@@ -70,48 +29,7 @@
     {{--</div>--}}
 </div>
 
-<footer id="footer" class="footer footer-black">
-    <div class="container">
-        <a class="footer-brand" href="#pablo">Rovix</a>
-
-        <ul class="pull-center">
-            {{--<li>
-                <a href="#pablo">
-                    Blog
-                </a>
-            </li>
-            <li>
-                <a href="#pablo">
-                    Presentation
-                </a>
-            </li>
-            <li>
-                <a href="#pablo">
-                    Discover
-                </a>
-            </li>
-            <li>
-                <a href="#pablo">
-                    Payment
-                </a>
-            </li>
-            <li>
-                <a href="#pablo">
-                    Contact Us
-                </a>
-            </li>--}}
-        </ul>
-
-        <ul class="social-buttons pull-right">
-            <li>
-                <a href="https://twitter.com/CreativeTim" target="_blank" class="btn btn-just-icon btn-simple">
-                    <i class="fa fa-github"></i>
-                </a>
-            </li>
-        </ul>
-
-    </div>
-</footer>
+@include('partials.footer')
 
 <!--   Core JS Files   -->
 <script src="/js/jquery.min.js" type="text/javascript"></script>

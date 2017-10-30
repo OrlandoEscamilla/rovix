@@ -6,12 +6,16 @@
 
     <div class="row">
         @include('partials.flash-message')
-        <div class="col-sm-10 col-sm-offset-1">
+        <div class="col-xs-12">
             <div class="card">
                 <div class="content">
                     {!! Form::open(['url' => '/buscar', 'method' => 'GET']) !!}
-                    <input type="text" class="form-control" name="searching"
-                           value="{{ (isset($searching) && $searching != 'Últimos recursos agregados') ? $searching : ''}}"/>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="searching"
+                               value="{{ (isset($searching) && $searching != 'Últimos recursos agregados') ? $searching : ''}}"/>
+                    </div>
+
                     <div style="display: inline;">
                         @foreach($types as $key => $type)
                             <div class="checkbox" style="display: inline">
@@ -28,56 +32,41 @@
                     <div style="display: inline;">
                         {{--<input type="button" class="btn btn-github btn-sm btn-round" value="Filtros"/>--}}
                     </div>
-                    <input type="submit" class="btn btn-primary btn-block" value="Buscar" style="display: block;">
+                    <input type="submit" class="btn btn-rose btn-block" value="Buscar" style="display: block;">
                     {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
 
-    {{--<div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-            <div class="card card-pricing card-product">
-                <div class="content text-left">
-                    @if(isset($recursos))
-                        Tu búsqueda: <a href="#" style="font-style: italic">{{$searching}}</a>
-                        @foreach($recursos as $recurso)
-                            <hr>
-                            <h4>{{$recurso->name}}
-                                <span class="label label-{{$recurso->class}}">
-                                <i class="fa fa-{{$recurso->icon}}"></i> {{$recurso->tipo}}
-                            </span>
-                                <span class="text-gray hidden-xs pull-right">Agregado por {{$recurso->user}} {{Carbon\Carbon::parse($recurso->created_at)->diffForHumans()}}</span>
-                            </h4>
-                            <p>{{$recurso->description}}</p>
-                            <a href="{{$recurso->link}}" target="_blank" class="btn btn-link"><i>Ir al sitio!</i></a>
-                            @if(session('usuario_id', ''))
-                                <button class="btn btn-success btn-fav" data-id="{{$recurso->id}}">
-                                    <span class="star-counter">{{ count(\App\Resource::find($recurso->id)->stars) }}</span>
-                                    <i class="fa fa-star color-yellow"></i>
-                                </button>
-                            @else
-                                <button class="btn btn-default btn-fav">37 <i class="fa fa-star color-yellow"></i>
-                                </button>
-                            @endif
-                        @endforeach
-                        <br>
-                        <div class="text-center">
-                            {{$recursos->appends(['searching' => session('searching', ''), 'types' => session('types', '')])->links()}}
-                        </div>
-                    @elseif (isset($searching) && $searching != '')
-                        <p>No se encontraron resultados para esta búsqueda</p>
-                    @else
-                        <p>Por favor define una búsqueda...</p>
-                    @endif
+    @if(!Auth::check())
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="alert alert-warning">
+                <div class="container-fluid">
+                    <div class="alert-icon">
+                        <i class="material-icons">error_outline</i>
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                    </button>
+                    <h4 class="card-title">
+                        <a href="#">
+                            Iniciando sesión podrías:
+                        </a>
+                    </h4>
+                    <p><i class="fa fa-crosshairs" style="font-weight: bold;"></i> Compartir material del cual has
+                                                                                   aprendido</p>
+                    <p><i class="fa fa-crosshairs" style="font-weight: bold;"></i> Dar fav a los recursos que has
+                                                                                   encontrado interesantes
                 </div>
             </div>
         </div>
-    </div>--}}
+    </div>
+    @endif
 
     <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-
+        <div class="col-md-8">
             @if(isset($recursos))
                 Tu búsqueda: <a href="#" style="font-style: italic">{{$searching}}</a>
                 @foreach($recursos as $recurso)
@@ -179,8 +168,38 @@
             @else
                 <p>Por favor define una búsqueda...</p>
             @endif
-
         </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="content content-info">
+                    <h4 class="card-title">
+                        Top 3 de esta semana!
+                    </h4>
+                    <div class="card-description">
+                        <a href="#" style="color: #FFF; display: block;">
+                            <i class="fa fa-crosshairs" style="font-weight: bold;"></i>
+                            <span style="margin-left: 5px; text-decoration: underline;">
+                                PHP: The Good Practices
+                            </span>
+                        </a>
+                        <a href="#" style="color: #FFF; display: block;">
+                            <i class="fa fa-crosshairs" style="font-weight: bold;"></i>
+                            <span style="margin-left: 5px; text-decoration: underline;">
+                                From Zero to Hero: Python API Restful
+                            </span>
+                        </a>
+                        <a href="#" style="color: #FFF; display: block;">
+                            <i class="fa fa-crosshairs" style="font-weight: bold;"></i>
+                            <span style="margin-left: 5px; text-decoration: underline;">
+                                Javascript: Lo bueno y malo
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 @endsection

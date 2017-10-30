@@ -26,7 +26,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="submit" class="btn btn-primary btn-block" value="Buscar"/>
+                                            <input type="submit" class="btn btn-rose btn-block" value="Buscar"/>
                                         </div>
                                     </div>
                                     {!! Form::close() !!}

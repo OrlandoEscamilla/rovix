@@ -38,6 +38,6 @@
     @endif
 </div>
 <div class="form-group text-center">
-    <input type="submit" class="btn btn-primary" value="GUARDAR RECURSO">
+    <input type="submit" class="btn btn-success" value="Guardar">
 </div>
 {!! Form::close() !!}

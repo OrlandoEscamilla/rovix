@@ -15,6 +15,112 @@ footer {
     padding-top: 25vh;
 }*/
 
+.navbar.navbar-carbon {
+    background-color: #444;
+    color: #ffffff;
+}
+
+.navbar.navbar-carbon .navbar-form .form-group input.form-control::-moz-placeholder,
+.navbar.navbar-carbon .navbar-form input.form-control::-moz-placeholder {
+    color: #ffffff;
+}
+
+.navbar.navbar-carbon .navbar-form .form-group input.form-control:-ms-input-placeholder,
+.navbar.navbar-carbon .navbar-form input.form-control:-ms-input-placeholder {
+    color: #ffffff;
+}
+
+.navbar.navbar-carbon .navbar-form .form-group input.form-control::-webkit-input-placeholder,
+.navbar.navbar-carbon .navbar-form input.form-control::-webkit-input-placeholder {
+    color: #ffffff;
+}
+
+.navbar.navbar-carbon .dropdown-menu {
+    border-radius: 3px !important;
+}
+
+.navbar.navbar-carbon .dropdown-menu li > a:hover, .navbar.navbar-carbon .dropdown-menu li > a:focus {
+    color: #FFFFFF;
+    background-color: #444;
+}
+
+.navbar.navbar-carbon .dropdown-menu .active > a {
+    background-color: #444;
+    color: #ffffff;
+}
+
+.footer-rose {
+    background: #e91e63;
+    background: -moz-radial-gradient(center, ellipse cover, #e91e63 0%, #e91e63 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #e91e63), color-stop(100%, #e91e63));
+    /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover, #e91e63 0%, #e91e63 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover, #e91e63 0%, #e91e63 100%);
+    /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover, #e91e63 0%, #e91e63 100%);
+    /* IE10+ */
+    background: radial-gradient(ellipse at center, #e91e63 0%, #e91e63 100%);
+    /* W3C */
+    background-size: 550% 450%;
+}
+
+.footer-rose a {
+    color: #FFFFFF;
+    opacity: .86;
+}
+
+.footer-rose a:hover, .footer-rose a:focus {
+    opacity: 1;
+}
+
+.footer-rose .footer-brand {
+    color: #FFFFFF;
+}
+
+.footer-rose .footer-brand:hover, .footer-rose .footer-brand:focus {
+    color: #FFFFFF;
+}
+
+.footer-rose h5,
+.footer-rose h4,
+.footer-rose i,
+.footer-rose .copyright {
+    color: #FFFFFF;
+}
+
+.footer-rose hr {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.form-group.is-focused .form-control {
+    background-image: linear-gradient(#e91e63, #e91e63), linear-gradient(#D2D2D2, #D2D2D2);
+}
+
+.checkbox input[type=checkbox]:checked + .checkbox-material .check {
+    background: #e91e63;
+}
+
+.togglebutton label input[type=checkbox]:checked + .toggle {
+    background-color: #e91e63;
+}
+.togglebutton label input[type=checkbox]:checked + .toggle:after {
+    border-color: #e91e63;
+}
+
+.dropdownjs > ul > li .selected, .dropdownjs > ul > li:active, .dropdownjs > ul > li:focus, .dropdownjs > ul > li:hover {
+    background-color: #e91e63;
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+    background-color: #e91e63;
+    border-color: #e91e63;
+}
+
 @media (max-width: 767px) {
     .header-2 .page-header .container {
         padding-top: 8vh;
@@ -22,7 +128,7 @@ footer {
 }
 
 .card .content .category {
-    padding-top:6px;
+    padding-top: 6px;
     float: right;
 }
 
