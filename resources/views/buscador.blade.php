@@ -3,11 +3,10 @@
 @section('content')
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <div class="row">
         @include('partials.flash-message')
         <div class="col-xs-12">
-            <div class="card">
+            <div class="card" style="margin-top: 2em;">
                 <div class="content">
                     {!! Form::open(['url' => '/buscar', 'method' => 'GET']) !!}
 
@@ -40,38 +39,38 @@
     </div>
 
     @if(!Auth::check())
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="alert alert-warning">
-                <div class="container-fluid">
-                    <div class="alert-icon">
-                        <i class="material-icons">error_outline</i>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="alert alert-warning">
+                    <div class="container-fluid">
+                        <div class="alert-icon">
+                            <i class="material-icons">error_outline</i>
+                        </div>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                        </button>
+                        <h4 class="card-title">
+                            <a href="#">
+                                Iniciando sesión podrías:
+                            </a>
+                        </h4>
+                        <p><i class="fa fa-crosshairs" style="font-weight: bold;"></i> Compartir material del cual has
+                                                                                       aprendido</p>
+                        <p><i class="fa fa-crosshairs" style="font-weight: bold;"></i> Dar fav a los recursos que has
+                                                                                       encontrado interesantes
                     </div>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true"><i class="material-icons">clear</i></span>
-                    </button>
-                    <h4 class="card-title">
-                        <a href="#">
-                            Iniciando sesión podrías:
-                        </a>
-                    </h4>
-                    <p><i class="fa fa-crosshairs" style="font-weight: bold;"></i> Compartir material del cual has
-                                                                                   aprendido</p>
-                    <p><i class="fa fa-crosshairs" style="font-weight: bold;"></i> Dar fav a los recursos que has
-                                                                                   encontrado interesantes
                 </div>
             </div>
         </div>
-    </div>
     @endif
 
     <div class="row">
         <div class="col-md-8">
-            @if(isset($recursos))
-                Tu búsqueda: <a href="#" style="font-style: italic">{{$searching}}</a>
+            @if(count($recursos))
+                {{--Tu búsqueda: <a href="#" style="font-style: italic">{{$searching}}</a>--}}
                 @foreach($recursos as $recurso)
 
-                    <div class="card">
+                    <div class="card searching-card">
                         <div class="content">
                             <h6 class="category text-{{$recurso->class}}">
                                 <i class="fa fa-{{$recurso->icon}}"></i> {{$recurso->tipo}}
@@ -90,6 +89,8 @@
                                     </a>
                                 </div>
                                 <div class="stats">
+                                    <a href="{{$recurso->link}}" target="_blank"
+                                       class="btn btn-github btn-sm btn-round"><i>Ir al sitio!</i></a>
                                     @if(session('usuario_id', ''))
                                         <button class="btn btn-warning btn-sm btn-simple btn-round btn-star">
                                             <i class="fa fa-star"></i> 10
@@ -159,14 +160,32 @@
                         </button>
                     @endif--}}
                 @endforeach
-                <br>
-                <div class="text-center">
-                    {{$recursos->appends(['searching' => session('searching', ''), 'types' => session('types', '')])->links()}}
-                </div>
-            @elseif (isset($searching) && $searching != '')
-                <p>No se encontraron resultados para esta búsqueda</p>
+                {{--@elseif (isset($searching) && $searching != '')--}}
             @else
-                <p>Por favor define una búsqueda...</p>
+                <div class="card">
+                    <div class="content content-danger">
+                        {{--<h5 class="category-social">
+                            <i class="fa fa-times"></i>
+                        </h5>--}}
+                        <h4 class="card-title">
+                            <a href="#pablo">No se encontraron rasultados para esta búsqueda</a>
+                        </h4>
+                        {{--<div class="footer">
+                            <div class="author">
+                                <a href="#pablo">
+                                    <img src="assets/img/faces/avatar.jpg" alt="..." class="avatar img-raised">
+                                    <span>Tania Andrew</span>
+                                </a>
+                            </div>
+                            <div class="stats">
+                                <i class="material-icons">favorite</i> 2.4K &middot;
+                                <i class="material-icons">share</i> 45
+                            </div>
+                        </div>--}}
+                    </div>
+                </div>
+                {{--@else
+                    <p>Por favor define una búsqueda...</p>--}}
             @endif
         </div>
 
@@ -198,6 +217,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="col-md-12 text-center">
+            {{$recursos->appends(['searching' => session('searching', ''), 'types' => session('types', '')])->links()}}
         </div>
 
     </div>

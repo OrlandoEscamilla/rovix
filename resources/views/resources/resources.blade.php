@@ -38,8 +38,8 @@
                     </div>
                     <div class="content">
                         <div class="tab-content">
-                            <div class="tab-pane active" id="resources">
-                                <table class="table table-striped table-hover">
+                            <div class="tab-pane active" id="resources" style="overflow-x: auto">
+                                <table class="table table-striped table-hover" width="100%">
                                     <thead>
                                     <tr>
                                         <th class="text-center">#</th>
@@ -54,10 +54,12 @@
                                         <tr>
                                             <td>{{$loop->index+1}}</td>
                                             <td>{{$resource->name}}</td>
-                                            <td><a href="{{$resource->link}}" target="_blank">{{$resource->link}}</a></td>
+                                            <td><a href="{{$resource->link}}" target="_blank">{{$resource->link}}</a>
+                                            </td>
                                             <td>{{$resource->language->name}}</td>
                                             <td class="td-actions">
-                                                <a href="{{url("/resource/$resource->id/edit")}}" class="btn btn-success btn-simple">
+                                                <a href="{{url("/resource/$resource->id/edit")}}"
+                                                   class="btn btn-success btn-simple">
                                                     <i class="material-icons">edit</i>
                                                 </a>
                                                 <a href="#" class="btn btn-danger btn-simple">
@@ -69,20 +71,6 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                    <tr>
-                                        <td class="text-center">3</td>
-                                        <td>Alex Mike</td>
-                                        <td>Design</td>
-                                        <td>2010</td>
-                                        <td class="td-actions">
-                                            <button type="button" rel="tooltip" class="btn btn-success btn-simple">
-                                                <i class="material-icons">edit</i>
-                                            </button>
-                                            <button type="button" rel="tooltip" class="btn btn-danger btn-simple">
-                                                <i class="material-icons">close</i>
-                                            </button>
-                                        </td>
-                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -92,6 +80,9 @@
                                 @else
                                     @include('resources.form', ['recurso' => $recurso, 'url' => $url, 'method' => $method])
                                 @endif
+                            </div>
+                            <div class="text-center">
+                                {{$resources->links()}}
                             </div>
                         </div>
                     </div>

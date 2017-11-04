@@ -117,8 +117,10 @@ footer {
 .pagination > .active > span,
 .pagination > .active > span:focus,
 .pagination > .active > span:hover {
-    background-color: #e91e63;
-    border-color: #e91e63;
+    /*background-color: #e91e63;
+    border-color: #e91e63;*/
+    background-color: #333;
+    border-color: #333;
 }
 
 @media (max-width: 767px) {
@@ -127,7 +129,7 @@ footer {
     }
 }
 
-.card .content .category {
+.searching-card .content .category {
     padding-top: 6px;
     float: right;
 }

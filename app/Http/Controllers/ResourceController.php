@@ -17,7 +17,7 @@ class ResourceController extends Controller
      */
     public function index()
     {
-        $resources = User::find(session('usuario_id'))->resources;
+        $resources = User::find(session('usuario_id'))->resources()->simplePaginate(6);
         $languages = Language::pluck('name', 'id');
         $types = Type::pluck('name', 'id');
         $method = 'POST';
