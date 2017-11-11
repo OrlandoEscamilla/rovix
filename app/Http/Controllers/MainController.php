@@ -53,7 +53,7 @@ class MainController extends Controller
                 ->join('types', 'types.id', '=', 'resources.type_id')
                 ->leftJoin('users', 'users.id', '=', 'resources.user_id')
                 //->leftJoin('stars', 'stars.resource_id', '=', 'resources.id')
-                ->select('resources.*', 'types.name as tipo', 'types.icon', 'types.class', 'users.name as user')
+                ->select('resources.*', 'types.name as tipo', 'types.icon', 'types.class', 'users.name as usuario')
                 ->whereIn('resources.type_id', (empty($filter) ? [1, 2, 3, 4, 5, 6] : $filter))
                 ->whereNull('resources.deleted_at')
                 ->latest()
@@ -67,7 +67,7 @@ class MainController extends Controller
                 ->join('types', 'types.id', '=', 'resources.type_id')
                 ->leftJoin('users', 'users.id', '=', 'resources.user_id')
                 //->leftJoin('stars', 'stars.resource_id', '=', 'resources.id')
-                ->select('resources.*', 'types.name as tipo', 'types.icon', 'types.class', 'users.name as user')
+                ->select('resources.*', 'types.name as tipo', 'types.icon', 'types.class', 'users.name as usuario')
                 ->where([
                     ['resources.name', 'like', "%{$request->searching}%"]
                     //['resources.type_id', '=', '1']
@@ -76,6 +76,7 @@ class MainController extends Controller
                 ->whereNull('resources.deleted_at')
                 ->paginate(5);
 
+            //dd($recursos);
             return view('buscador', compact('recursos', 'types', 'searching', 'filtering'));
         }
     }

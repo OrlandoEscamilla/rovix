@@ -34,7 +34,7 @@ class User extends Authenticatable
 
     public function githubUser()
     {
-        return $this->hasOne('App\GitHubUser', 'id');
+        return $this->hasOne('App\GitHubUser', 'id', 'github_id');
     }
 
     public function getStars()
