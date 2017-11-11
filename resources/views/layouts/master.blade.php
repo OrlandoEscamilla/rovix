@@ -14,6 +14,7 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/css/material-kit.css" rel="stylesheet"/>
     <link href="/css/vertical-nav.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/toastr.css">
     <link rel="stylesheet" href="/css/main.css">
     <title>MKV - Rovix</title>
 </head>
@@ -25,7 +26,7 @@
 
 <div class="container">
     {{--<div class="row">--}}
-        @yield('content')
+    @yield('content')
     {{--</div>--}}
 </div>
 
@@ -61,6 +62,8 @@
 <script src="/assets-for-demo/modernizr.js" type="text/javascript"></script>
 <script src="/assets-for-demo/vertical-nav.js" type="text/javascript"></script>
 
+<script src="/js/toastr.js" type="text/javascript"></script>
+
 <script type="text/javascript">
     /*$().ready(function () {
 
@@ -78,6 +81,8 @@
         }
     });
 </script>
+
+@yield('script')
 
 </body>
 

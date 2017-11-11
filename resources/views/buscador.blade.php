@@ -9,7 +9,6 @@
             <div class="card" style="margin-top: 2em;">
                 <div class="content">
                     {!! Form::open(['url' => '/buscar', 'method' => 'GET']) !!}
-
                     <div class="form-group">
                         <input type="text" class="form-control" name="searching"
                                value="{{ (isset($searching) && $searching != 'Últimos recursos agregados') ? $searching : ''}}"/>
@@ -38,7 +37,7 @@
         </div>
     </div>
 
-    @if(!Auth::check())
+    @if(!Auth::user() && session('Sign-in', 'true'))
         <div class="row">
             <div class="col-xs-12">
                 <div class="alert alert-warning">
@@ -46,7 +45,7 @@
                         <div class="alert-icon">
                             <i class="material-icons">error_outline</i>
                         </div>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <button id="close-message" type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true"><i class="material-icons">clear</i></span>
                         </button>
                         <h4 class="card-title">
@@ -54,10 +53,18 @@
                                 Iniciando sesión podrías:
                             </a>
                         </h4>
-                        <p><i class="fa fa-crosshairs" style="font-weight: bold;"></i> Compartir material del cual has
-                                                                                       aprendido</p>
-                        <p><i class="fa fa-crosshairs" style="font-weight: bold;"></i> Dar fav a los recursos que has
-                                                                                       encontrado interesantes
+                        <p>
+                            <i class="fa fa-crosshairs" style="font-weight: bold;"></i>
+                            Compartir material del cual has aprendido
+                        </p>
+                        <p>
+                            <i class="fa fa-crosshairs" style="font-weight: bold;"></i>
+                            Dar fav a los recursos que has encontrado interesantes
+                        </p>
+                        <a href="/login/github" class="btn btn-github">
+                            Entrar con Github
+                            <i class="fa fa-github"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -92,12 +99,15 @@
                                     <a href="{{$recurso->link}}" target="_blank"
                                        class="btn btn-github btn-sm btn-round"><i>Ir al sitio!</i></a>
                                     @if(session('usuario_id', ''))
-                                        <button class="btn btn-warning btn-sm btn-simple btn-round btn-star">
-                                            <i class="fa fa-star"></i> 10
+                                        <button class="btn btn-warning btn-sm btn-simple btn-round btn-star"
+                                                data-id="{{$recurso->id}}">
+                                            <i class="fa fa-star"></i> <span
+                                                    class="star-counter">{{ count(\App\Resource::find($recurso->id)->stars) }}</span>
                                         </button>
                                     @else
                                         <button class="btn btn-warning btn-sm btn-simple">
-                                            <i class="fa fa-star"></i> 10
+                                            <i class="fa fa-star"></i> <span
+                                                    class="star-counter">{{ count(\App\Resource::find($recurso->id)->stars) }}</span>
                                         </button>
                                     @endif
                                 </div>
@@ -236,28 +246,19 @@
             }
         });
 
-        $('.btn-filtro').click(function (e) {
-            $('.filter-container').toggle();
-        });
+        toastr.options = {
+            "positionClass": "toast-bottom-right"
+        };
 
-        function displayIfPicked() {
-            if ($('input:checked').length) {
-                $('.filter-container').show();
+        function notify(type, message) {
+            if (type == 'success') {
+                toastr.success(message);
+            } else if (type == 'error') {
+                toastr.error(message);
             }
         }
 
-        function notify(type, message) {
-            var alert = $('.alert');
-
-            $(alert).addClass(type).show(500);
-            $('.alert strong').html(message);
-            setTimeout(function () {
-                $(alert).removeClass(type).hide(500);
-            }, 1750);
-
-        }
-
-        $('.btn-fav').click(function (e) {
+        $('.btn-star').click(function (e) {
             var btn = this;
             var id = $(this).data('id');
             $.ajax({
@@ -267,22 +268,31 @@
                 dataType: 'JSON',
                 success: function (response) {
                     console.log(response);
-                    if (response.status === 'OK') {
+                    if (response.status === 'success') {
                         var counter = parseInt($(btn).find('.star-counter').html());
                         console.log(counter);
                         counter++;
                         $(btn).find('.star-counter').html(counter);
-                        notify('alert-success', response.message);
+                        notify(response.status, response.message);
                     } else {
-                        notify('alert-danger', response.message);
+                        notify(response.status, response.message);
                     }
                 },
                 error: function (response) {
-                    notify('alert-danger', 'You need to login to fav');
+                    notify('error', 'You need to login to fav');
                 }
             });
         });
 
-        displayIfPicked();
+        $('.close').click(function (e) {
+            $.ajax({
+                url: '{{'/messages/close/signin'}}',
+                method: 'POST',
+                dataType: 'JSON',
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+        });
     </script>
 @endsection

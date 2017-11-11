@@ -36,4 +36,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\GitHubUser', 'id');
     }
+
+    public function getStars()
+    {
+        return $this->hasMany('App\Star');
+    }
 }

@@ -6,6 +6,7 @@ use App\BitbucketUser;
 use App\GithubUser;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -104,7 +105,6 @@ class LoginController extends Controller
                 $githubUser = User::where('github_id', $user->id)->first();
 
                 if (count($githubUser)) {
-
                     $newUser = $githubUser;
                 } else {
                     $isUser->github_id = $user->id;
@@ -179,6 +179,7 @@ class LoginController extends Controller
 
         session(['email' => $newUser->email]);
         session(['usuario_id' => $newUser->id]);
+        Auth::loginUsingId($newUser->id);
 
         return true;
     }
