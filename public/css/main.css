@@ -105,6 +105,7 @@ footer {
 .togglebutton label input[type=checkbox]:checked + .toggle {
     background-color: #e91e63;
 }
+
 .togglebutton label input[type=checkbox]:checked + .toggle:after {
     border-color: #e91e63;
 }
@@ -135,12 +136,24 @@ footer {
 }
 
 .btn-star {
-     padding: 5px 10px !important;
-     border: 1px solid;
- }
+    padding: 5px 10px !important;
+    border: 1px solid;
+}
 
 .btn-star:hover,
 .btn-star:active,
 .btn-star:visited {
     border: 1px solid !important;
+}
+
+.tagsinput {
+    border-bottom: 1px solid #D2D2D2;
+}
+
+.tagsinput input {
+    width: 100px;
+}
+
+.modal .form-group {
+    margin: 0;
 }

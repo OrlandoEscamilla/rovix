@@ -6,6 +6,7 @@ use App\Language;
 use App\Resource;
 use App\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -110,5 +111,11 @@ class MainController extends Controller
     public function about()
     {
         return view('about');
+    }
+
+    public function getUserProfile()
+    {
+        $user = Auth::user();
+        return view('profile', compact('user'));
     }
 }

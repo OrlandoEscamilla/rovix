@@ -37,6 +37,10 @@
         <span class="label label-danger">{{$errors->first('description')}}</span>
     @endif
 </div>
+<div class="form-group">
+    <label>Tags:</label>
+    <input name="tagsinput" class="tagsinput tag-rose" value="" />
+</div>
 <div class="form-group text-center">
     <input type="submit" class="btn btn-github" value="Guardar">
 </div>

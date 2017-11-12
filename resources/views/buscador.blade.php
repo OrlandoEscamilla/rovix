@@ -91,7 +91,7 @@
                             <div class="footer">
                                 <div class="author">
                                     <a href="#pablo">
-                                        <img src="{{\App\User::find($recurso->user_id)->githubUser->avatar}}" alt="..." class="avatar img-raised">
+                                        <img src="{{\App\User::find($recurso->user_id)->githubUser->avatar ?? 'http://i.pravatar.cc/150?img=3'}}" alt="..." class="avatar img-raised">
                                         <span>{{$recurso->usuario}} {{Carbon\Carbon::parse($recurso->created_at)->diffForHumans()}}</span>
                                     </a>
                                 </div>

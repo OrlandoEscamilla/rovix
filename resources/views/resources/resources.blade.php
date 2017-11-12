@@ -73,6 +73,9 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <div class="text-center">
+                                    {{$resources->links()}}
+                                </div>
                             </div>
                             <div class="tab-pane" id="new">
                                 @if(!isset($recurso))
@@ -80,9 +83,6 @@
                                 @else
                                     @include('resources.form', ['recurso' => $recurso, 'url' => $url, 'method' => $method])
                                 @endif
-                            </div>
-                            <div class="text-center">
-                                {{$resources->links()}}
                             </div>
                         </div>
                     </div>

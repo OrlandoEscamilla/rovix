@@ -22,9 +22,7 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/perfil', function () {
-    return view('profile');
-});
+Route::get('/perfil', 'MainController@getUserProfile');
 
 Route::get('/recursos', function () {
     return view('recursos');
