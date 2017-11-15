@@ -23,6 +23,8 @@ Route::get('/about', function () {
 });
 
 Route::get('/perfil', 'MainController@getUserProfile');
+Route::get('/perfil/actualizar/{id}', 'UserController@edit');
+Route::post('/perfil/actualizar/{id}', 'UserController@update');
 
 Route::get('/recursos', function () {
     return view('recursos');

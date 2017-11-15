@@ -34,7 +34,7 @@
                             <a href="#pablo" class="btn btn-just-icon btn-simple btn-google">
                                 <i class="fa fa-globe"></i>
                             </a>
-                            <a href="#" class="btn btn-success btn-simple btn-round pull-right">
+                            <a href="/perfil/actualizar/{{$user->id}}" class="btn btn-success btn-simple btn-round pull-right">
                                 <i class="fa fa-pencil"></i> Editar
                             </a>
                         </div>
