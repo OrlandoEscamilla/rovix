@@ -74,11 +74,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Auth::user()->id == $id)
-        {
-            dd($request);
+        if (Auth::user()->id == $id) {
+            $user = User::findOrFail($id);
+            $user->title = $request->titulo;
+            $user->website = $request->website;
+            $user->save();
+
+            return redirect('/perfil')->with('success', 'Actualización exitosa');
+
         } else {
-            dd('no puede editar');
+            return redirect()->back();
         }
     }
 

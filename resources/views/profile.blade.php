@@ -8,35 +8,40 @@
             <div class="col-sm-6">
                 <div class="card card-profile">
                     <div class="card-avatar">
-                        <a href="#pablo">
-                            <img src="{{\App\User::find($user->id)->githubUser->avatar ?? 'http://i.pravatar.cc/150?img=3'}}"
+                        <a href="#">
+                            {{--<img src="{{\App\User::find($user->id)->githubUser->avatar ?? 'http://i.pravatar.cc/150?img=3'}}"
+                                 alt="avatar" class="img">--}}
+                            <img src="/img/banderas.gif"
                                  alt="avatar" class="img">
                         </a>
                     </div>
 
                     <div class="content">
                         <h4 class="card-title">{{$user->name}}</h4>
-                        <h6 class="category text-muted">Desarrollador</h6>
+                        <h6 class="category text-muted">{{$user->title}}</h6>
 
                         <p class="card-description">
                             {{$user->githubUser->bio}}
                         </p>
                         <div class="footer">
                             @if($user->githubUser->profile_url)
-                                <a href="{{$user->githubUser->profile_url}}"
-                                   class="btn btn-just-icon btn-simple btn-github" target="_blank">
+                                <a href="{{$user->githubUser->profile_url}}" target="_blank"
+                                   class="btn btn-just-icon btn-simple btn-github">
                                     <i class="fa fa-github"></i>
                                 </a>
                             @endif
-                            <a href="#pablo" class="btn btn-just-icon btn-simple btn-dribbble">
-                                <i class="fa fa-dribbble"></i>
-                            </a>
-                            <a href="#pablo" class="btn btn-just-icon btn-simple btn-google">
-                                <i class="fa fa-globe"></i>
-                            </a>
-                            <a href="/perfil/actualizar/{{$user->id}}" class="btn btn-success btn-simple btn-round pull-right">
-                                <i class="fa fa-pencil"></i> Editar
-                            </a>
+                            @if($user->website)
+                                <a href="{{$user->website}}" class="btn btn-just-icon btn-simple btn-google"
+                                   target="_blank">
+                                    <i class="fa fa-globe"></i>
+                                </a>
+                            @endif
+                            @if($user->id == Auth::user()->id)
+                                <a href="/perfil/actualizar/{{$user->id}}"
+                                   class="btn btn-success btn-simple btn-round pull-right">
+                                    <i class="fa fa-pencil"></i> Editar
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -64,7 +69,7 @@
                 </div>
             </div>
 
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            {{--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -78,7 +83,7 @@
                             {!!Form::open()!!}
                             <div class="form-group label-floating">
                                 <label class="control-label">Nombre</label>
-                                <input type="text" class="form-control" name="nombre">
+                                <input type="text" class="form-control" name="nombre" value="{{$user->name}}">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Titulo</label>
@@ -99,10 +104,10 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success">Guardar</button>
-                        {{--<button type="button" class="btn btn-danger btn-simple" data-dismiss="modal">Close</button>--}}
+                        --}}{{--<button type="button" class="btn btn-danger btn-simple" data-dismiss="modal">Close</button>--}}{{--
                     </div>
                 </div>
-            </div>
+            </div>--}}
         </div>
     </div>
 

@@ -32,7 +32,7 @@ Route::get('/recursos', function () {
 
 Route::get('/buscar', 'MainController@buscar');
 
-Route::resource('resource', 'ResourceController');
+Route::resource('/resource', 'ResourceController');
 
 Route::get('/login/{provider}', 'LoginController@redirectToProvider');
 Route::get('/login/{provider}/callback', 'LoginController@handleProviderCallback');

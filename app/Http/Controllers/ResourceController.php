@@ -7,6 +7,7 @@ use App\Resource;
 use App\Type;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ResourceController extends Controller
 {
@@ -17,7 +18,8 @@ class ResourceController extends Controller
      */
     public function index()
     {
-        $resources = User::find(session('usuario_id'))->resources()->simplePaginate(6);
+        $resources = User::find(session('usuario_id'))->resources()->paginate(6);
+        //$resources = User::find(session('usuario_id'))->resources;
         $languages = Language::pluck('name', 'id');
         $types = Type::pluck('name', 'id');
         $method = 'POST';
@@ -60,7 +62,7 @@ class ResourceController extends Controller
         $resource->language_id = $request->language_id;
         $resource->link = $request->link;
         $resource->description = $request->description;
-        $resource->tags = '';
+        $resource->tags = $request->tags;
 
         $resource->save();
 
@@ -90,15 +92,19 @@ class ResourceController extends Controller
      */
     public function edit($id)
     {
+        $recurso = Resource::find($id);
+        if (Auth::user()->id != $recurso->user->id) {
+            return redirect('/');
+        }
+
         $resources = User::find(session('usuario_id'))->resources;
         $languages = Language::pluck('name', 'id');
         $types = Type::pluck('name', 'id');
         $method = 'PATCH';
 
-        $recurso = Resource::find($id);
         $url = "/resource/$recurso->id";
 
-        return view('resources.resources', compact('resources', 'languages', 'types', 'method', 'url', 'recurso'));
+        return view('resources.update', compact('resources', 'languages', 'types', 'method', 'url', 'recurso'));
     }
 
     /**

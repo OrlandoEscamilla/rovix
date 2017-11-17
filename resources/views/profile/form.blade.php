@@ -12,7 +12,7 @@
                     </h4>
                     {!! Form::open(['url' => '/perfil/actualizar/'.$user->id, 'method' => 'post']) !!}
 
-                    <div class="col-sm-12 text-center">
+                    {{--<div class="col-sm-12 text-center">
                         <div class="form-group">
                             <h4>
                                 <small>Avatar</small>
@@ -38,11 +38,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
 
                     <div class="form-group col-sm-6">
                         <label class="control-label">Nombre</label>
-                        <input type="text" class="form-control" name="nombre">
+                        <input type="text" class="form-control" name="nombre" disabled>
                     </div>
 
                     <div class="form-group col-sm-6">
@@ -52,12 +52,11 @@
                     </div>
                     <div class="form-group col-sm-12">
                         <label class="control-label">Bio</label>
-                        <input type="text" class="form-control" name="bio"
-                               placeholder="p.e. Cuando no tiro líneas en el trabajo, las tiro en la casa...">
+                        <input type="text" class="form-control" name="bio" disabled>
                     </div>
                     <div class="form-group col-sm-6">
                         <label class="control-label">Website</label>
-                        <input type="text" class="form-control" name="website">
+                        <input type="text" class="form-control" name="website" value="http://">
                     </div>
                     <div class="form-group col-sm-12 text-center">
                         <input type="submit" class="btn btn-success" value="guardar">

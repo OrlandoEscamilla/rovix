@@ -39,7 +39,7 @@
 </div>
 <div class="form-group">
     <label>Tags:</label>
-    <input name="tagsinput" class="tagsinput tag-rose" value="" />
+    <input name="tags" class="tagsinput tag-rose" value="{{isset($recurso) ? $recurso->tags : ''}}"/>
 </div>
 <div class="form-group text-center">
     <input type="submit" class="btn btn-github" value="Guardar">
