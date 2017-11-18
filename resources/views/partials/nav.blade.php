@@ -53,7 +53,7 @@
                 </li>
                 <li>
                     <a href="{{url('/about')}}">
-                        ABOUT
+                        acerca
                     </a>
 
                 </li>

@@ -42,21 +42,21 @@
 
                     <div class="form-group col-sm-6">
                         <label class="control-label">Nombre</label>
-                        <input type="text" class="form-control" name="nombre" disabled>
+                        <input type="text" class="form-control" name="nombre" value="{{$user->name}}" disabled>
                     </div>
 
                     <div class="form-group col-sm-6">
                         <label class="control-label">Titulo</label>
-                        <input type="text" class="form-control" name="titulo"
+                        <input type="text" class="form-control" name="titulo" value="{{$user->title}}"
                                placeholder="p.e. Evangelista Android">
                     </div>
                     <div class="form-group col-sm-12">
                         <label class="control-label">Bio</label>
-                        <input type="text" class="form-control" name="bio" disabled>
+                        <input type="text" class="form-control" name="bio" value="{{$user->githubUser->bio}}" disabled>
                     </div>
                     <div class="form-group col-sm-6">
                         <label class="control-label">Website</label>
-                        <input type="text" class="form-control" name="website" value="http://">
+                        <input type="text" class="form-control" name="website" value="{{$user->website}}">
                     </div>
                     <div class="form-group col-sm-12 text-center">
                         <input type="submit" class="btn btn-success" value="guardar">

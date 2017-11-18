@@ -11,7 +11,7 @@
                         <a href="#">
                             {{--<img src="{{\App\User::find($user->id)->githubUser->avatar ?? 'http://i.pravatar.cc/150?img=3'}}"
                                  alt="avatar" class="img">--}}
-                            <img src="/img/banderas.gif"
+                            <img src="{{($user->avatar) ? '/img/'.$user->avatar : \App\User::find($user->id)->githubUser->avatar}}"
                                  alt="avatar" class="img">
                         </a>
                     </div>
