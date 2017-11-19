@@ -45,10 +45,7 @@ Route::post('/messages/close/signin', function () {
 
 Route::post('/star/fav', 'StarController@favHandler');
 
-Route::get('joker', function () {
-    //dd(User::find(1));
-    dd(User::find(1)->githubUser->avatar);
-});
+Route::get('/joker', 'MainController@searcher');
 
 /*Route::get('sesiones', function (Request $request){
     $request->session()->forget('Sign-in');

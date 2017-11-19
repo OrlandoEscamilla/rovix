@@ -18,6 +18,13 @@
     <link href="/css/vertical-nav.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/css/toastr.css">
     <link rel="stylesheet" href="/css/main.css">
+
+    <!-- Instant Search CSS -->
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.2.4/dist/instantsearch.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.2.4/dist/instantsearch-theme-algolia.min.css">
+
     <title>Rovix: Mapeando conocimiento</title>
 </head>
 <body class="section-white">
@@ -64,7 +71,15 @@
 <script src="/assets-for-demo/modernizr.js" type="text/javascript"></script>
 <script src="/assets-for-demo/vertical-nav.js" type="text/javascript"></script>
 
+<!-- Toastr library for notifications -->
 <script src="/js/toastr.js" type="text/javascript"></script>
+
+<!-- InstantSearch JS library -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.2.4/dist/instantsearch.min.js"></script>
+
+<!-- Moment JS -->
+<script src="https://cdn.jsdelivr.net/npm/moment@2.19.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/locale/es.js"></script>
 
 <script type="text/javascript">
     /*$().ready(function () {

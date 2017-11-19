@@ -118,4 +118,63 @@ class MainController extends Controller
         $user = Auth::user();
         return view('profile', compact('user'));
     }
+
+    public function searcher(Request $request)
+    {
+
+        $types = Type::all();
+        $searching = (isset($request->searching) ? $request->searching : '');
+        $request->session()->put('searching', $searching);
+        if (isset($request->types)) {
+            $request->session()->put('types', $request->types);
+            $filter = str_split($request->types, 1);
+        } else {
+            $filter = $this->getTypes($request);
+            $request->session()->put('types', implode('', $filter));
+        }
+
+        $filtering = [];
+
+        /** Here we get which filters (resources types) were picked*/
+        for ($i = 1; $i <= count($types); $i++) {
+            if (in_array($i, $filter)) {
+                array_push($filtering, 1);
+            } else {
+                array_push($filtering, 0);
+            }
+        }
+
+        if (empty($request->searching)) {
+            /** If searching was empty, we will response with the six latest resources added */
+            $recursos = DB::table('resources')
+                ->join('types', 'types.id', '=', 'resources.type_id')
+                ->leftJoin('users', 'users.id', '=', 'resources.user_id')
+                //->leftJoin('stars', 'stars.resource_id', '=', 'resources.id')
+                ->select('resources.*', 'types.name as tipo', 'types.icon', 'types.class', 'users.name as usuario')
+                ->whereIn('resources.type_id', (empty($filter) ? [1, 2, 3, 4, 5, 6] : $filter))
+                ->whereNull('resources.deleted_at')
+                ->latest()
+                ->limit(6)
+                ->paginate(5);
+            $searching = 'Últimos recursos agregados';
+            return view('searching.searcher', compact('recursos', 'types', 'searching', 'filtering'));
+
+        } else {
+            $recursos = DB::table('resources')
+                ->join('types', 'types.id', '=', 'resources.type_id')
+                ->leftJoin('users', 'users.id', '=', 'resources.user_id')
+                //->leftJoin('stars', 'stars.resource_id', '=', 'resources.id')
+                ->select('resources.*', 'types.name as tipo', 'types.icon', 'types.class', 'users.name as usuario')
+                ->where([
+                    ['resources.name', 'like', "%{$request->searching}%"]
+                    //['resources.type_id', '=', '1']
+                ])
+                ->whereIn('resources.type_id', (empty($filter) ? [1, 2, 3, 4, 5, 6] : $filter))
+                ->whereNull('resources.deleted_at')
+                ->paginate(5);
+
+            //dd($recursos);
+            return view('searching.searcher', compact('recursos', 'types', 'searching', 'filtering'));
+        }
+    }
 }

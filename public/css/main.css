@@ -157,3 +157,12 @@ footer {
 .card .content .form-group {
     margin: 0;
 }
+
+.ais-refinement-list--item {
+    display: inline-block !important;
+    margin-right: 1em;
+}
+
+.filter-counter {
+    color: #e91e63;
+}
