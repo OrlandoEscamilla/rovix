@@ -9,7 +9,7 @@
             <div class="card" style="margin-top: 2em;">
                 <div class="content">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="searching" id="search-box"/>
+                        <input type="text" class="form-control" name="searching" id="search-box" value="{{$searching}}"/>
                     </div>
                     <div id="types"></div>
                 </div>
@@ -248,7 +248,7 @@
                 container: '#hits',
                 hitsPerPage: 2,
                 templates: {
-                    empty: 'No results',
+                    empty: '<h4>No se encontraron resultados para la búsqueda: <b>@{{query}}</b></h4>',
                     item: document.querySelector("#hit-card").innerHTML
                 },
                 transformData: {

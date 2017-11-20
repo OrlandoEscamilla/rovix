@@ -16,7 +16,7 @@
                         <div class="col-md-10 col-md-offset-1">
                             <div class="card card-form-horizontal">
                                 <div class="content">
-                                    {!! Form::open(['method' => 'GET', 'url' => '/buscar']) !!}
+                                    {!! Form::open(['method' => 'GET', 'url' => '/search']) !!}
                                     <div class="row">
                                         <div class="col-md-9">
                                             <div class="form-group">
