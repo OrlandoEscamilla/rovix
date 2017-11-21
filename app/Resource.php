@@ -8,7 +8,7 @@ use Laravel\Scout\Searchable;
 
 class Resource extends Model
 {
-    protected $fillable = ['name', 'type', 'has_cost', 'language', 'link', 'description', 'tags', 'user'];
+    protected $fillable = ['name', 'type', 'has_cost', 'language', 'link', 'description', 'tags', 'user', 'short_description'];
 
     use SoftDeletes;
     use Searchable;

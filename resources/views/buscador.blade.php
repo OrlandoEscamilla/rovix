@@ -83,21 +83,29 @@
                                 <i class="fa fa-{{$recurso->icon}}"></i> {{$recurso->tipo}}
                             </h6>
                             <h4 class="card-title">
-                                <a href="#pablo">{{$recurso->name}}</a>
+                                <a href="#">{{$recurso->name}}</a>
                             </h4>
                             <p>
-                                {{$recurso->description}}
+                                {{substr($recurso->description, 0, 350).'...'}}
                             </p>
                             <div class="footer">
                                 <div class="author">
                                     <a href="#pablo">
-                                        <img src="{{\App\User::find($recurso->user_id)->githubUser->avatar ?? 'http://i.pravatar.cc/150?img=3'}}" alt="..." class="avatar img-raised">
+                                        <img src="{{\App\User::find($recurso->user_id)->githubUser->avatar ?? 'http://i.pravatar.cc/150?img=3'}}"
+                                             alt="..." class="avatar img-raised">
                                         <span>{{$recurso->usuario}} {{Carbon\Carbon::parse($recurso->created_at)->diffForHumans()}}</span>
                                     </a>
                                 </div>
                                 <div class="stats">
-                                    <a href="{{$recurso->link}}" target="_blank"
-                                       class="btn btn-github btn-sm btn-round"><i>Ir al sitio!</i></a>
+                                    <a href="#" class="btn btn-github btn-sm btn-round btn-modal"
+                                       data-id="{{$recurso->id}}">
+                                        Ver más &nbsp;&nbsp;
+                                        <i class="fa fa-external-link" style="font-size: 12px;"></i>
+                                    </a>
+                                    {{--<a href="{{$recurso->link}}" target="_blank"
+                                       class="btn btn-github btn-sm btn-round">
+                                        <i>Ir al sitio!</i>
+                                    </a>--}}
                                     @if(session('usuario_id', ''))
                                         <button class="btn btn-warning btn-sm btn-simple btn-round btn-star"
                                                 data-id="{{$recurso->id}}">
@@ -233,6 +241,68 @@
             {{$recursos->appends(['searching' => session('searching', ''), 'types' => session('types', '')])->links()}}
         </div>
 
+        <div class="col-xs-12">
+            <!-- Classic Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                <i class="material-icons">clear</i>
+                            </button>
+                            <h4 class="modal-title">Curso de PHP</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                               there live the blind texts. Separated they live in Bookmarksgrove right at the coast of
+                               the Semantics, a large language ocean. A small river named Duden flows by their place and
+                               supplies it with the necessary regelialia. It is a paradisematic country, in which
+                               roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no
+                               control about the blind texts it is an almost unorthographic life One day however a small
+                               line of blind text by the name of Lorem Ipsum decided to leave for the far World of
+                               Grammar.
+                            </p>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                               there live the blind texts. Separated they live in Bookmarksgrove right at the coast of
+                               the Semantics, a large language ocean. A small river named Duden flows by their place and
+                               supplies it with the necessary regelialia. It is a paradisematic country, in which
+                               roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no
+                               control about the blind texts it is an almost unorthographic life One day however a small
+                               line of blind text by the name of Lorem Ipsum decided to leave for the far World of
+                               Grammar.
+                            </p>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                               there live the blind texts. Separated they live in Bookmarksgrove right at the coast of
+                               the Semantics, a large language ocean. A small river named Duden flows by their place and
+                               supplies it with the necessary regelialia. It is a paradisematic country, in which
+                               roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no
+                               control about the blind texts it is an almost unorthographic life One day however a small
+                               line of blind text by the name of Lorem Ipsum decided to leave for the far World of
+                               Grammar.
+                            </p>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                               there live the blind texts. Separated they live in Bookmarksgrove right at the coast of
+                               the Semantics, a large language ocean. A small river named Duden flows by their place and
+                               supplies it with the necessary regelialia. It is a paradisematic country, in which
+                               roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no
+                               control about the blind texts it is an almost unorthographic life One day however a small
+                               line of blind text by the name of Lorem Ipsum decided to leave for the far World of
+                               Grammar.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#" class="btn btn-rose btn-link" target="_blank">Visitar sitio</a>
+                            <button type="button" class="btn btn-warning">
+                                <i class="fa fa-star"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  End Modal -->
+        </div>
+
     </div>
 
 @endsection
@@ -294,5 +364,29 @@
                 }
             });
         });
+
+        $('.btn-modal').click(function (e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            $.ajax({
+                url: '/api/resource/' + id,
+                method: 'GET',
+                dataType: 'JSON',
+                success: function (response) {
+                    setModal(response.data.resource);
+                },
+                error: function () {
+                    notify('error', 'Ocurrio un problema')
+                }
+            });
+            $('#myModal').modal('show');
+        });
+
+        function setModal(resource) {
+            console.log(resource);
+            $('.modal-title').html(resource.name);
+            $('.modal-body').html(resource.description);
+            $('.btn-link').attr('href', resource.link);
+        }
     </script>
 @endsection

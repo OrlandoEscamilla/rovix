@@ -9,7 +9,8 @@
             <div class="card" style="margin-top: 2em;">
                 <div class="content">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="searching" id="search-box" value="{{$searching}}"/>
+                        <input type="text" class="form-control" name="searching" id="search-box"
+                               value="{{$searching}}"/>
                     </div>
                     <div id="types"></div>
                 </div>
@@ -61,7 +62,7 @@
             <div class="card">
                 <div class="content content-info">
                     <h4 class="card-title">
-                        Top 3 de esta semana!
+                        Top 3 Más Vistos
                     </h4>
                     <div class="card-description">
                         <a href="#" style="color: #FFF; display: block;">
@@ -79,7 +80,35 @@
                         <a href="#" style="color: #FFF; display: block;">
                             <i class="fa fa-crosshairs" style="font-weight: bold;"></i>
                             <span style="margin-left: 5px; text-decoration: underline;">
-                                Javascript: Lo bueno y malo
+                                Javascript: Lo bueno y lo malo
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="content content-warning">
+                    <h4 class="card-title">
+                        Top 3 Más Estrellados
+                    </h4>
+                    <div class="card-description">
+                        <a href="#" style="color: #FFF; display: block;">
+                            <i class="fa fa-crosshairs" style="font-weight: bold;"></i>
+                            <span style="margin-left: 5px; text-decoration: underline;">
+                                Android for dummies
+                            </span>
+                        </a>
+                        <a href="#" style="color: #FFF; display: block;">
+                            <i class="fa fa-crosshairs" style="font-weight: bold;"></i>
+                            <span style="margin-left: 5px; text-decoration: underline;">
+                                Clean Code
+                            </span>
+                        </a>
+                        <a href="#" style="color: #FFF; display: block;">
+                            <i class="fa fa-crosshairs" style="font-weight: bold;"></i>
+                            <span style="margin-left: 5px; text-decoration: underline;">
+                                Como se programa a martillazos
                             </span>
                         </a>
                     </div>
@@ -121,8 +150,13 @@
                             </a>
                         </div>
                         <div class="stats">
-                            <a href="@{{link}}" target="_blank"
-                               class="btn btn-github btn-sm btn-round"><i>Ir al sitio!</i></a>
+                            <a href="#" class="btn btn-github btn-sm btn-round btn-modal"
+                               data-id="@{{id}}">
+                                Ver más &nbsp;&nbsp;
+                                <i class="fa fa-external-link" style="font-size: 12px;"></i>
+                            </a>
+                            {{--<a href="@{{link}}" target="_blank"
+                               class="btn btn-github btn-sm btn-round"><i>Ir al sitio!</i></a>--}}
                             @if(session('usuario_id', ''))
                                 <button class="btn btn-warning btn-sm btn-simple btn-round btn-star"
                                         data-id="@{{id}}">
@@ -135,23 +169,36 @@
                                             class="star-counter">@{{stars}}</span>
                                 </button>
                             @endif
-                            {{--@if(session('usuario_id', ''))
-                                <button class="btn btn-warning btn-sm btn-simple btn-round btn-star"
-                                        data-id="{{$recurso->id}}">
-                                    <i class="fa fa-star"></i> <span
-                                            class="star-counter">{{ count(\App\Resource::find($recurso->id)->stars) }}</span>
-                                </button>
-                            @else
-                                <button class="btn btn-warning btn-sm btn-simple">
-                                    <i class="fa fa-star"></i> <span
-                                            class="star-counter">{{ count(\App\Resource::find($recurso->id)->stars) }}</span>
-                                </button>
-                            @endif--}}
                         </div>
                     </div>
                 </div>
             </div>
         </script>
+
+        <div class="col-xs-12">
+            <!-- Classic Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                <i class="material-icons">clear</i>
+                            </button>
+                            <h4 class="modal-title"></h4>
+                        </div>
+                        <div class="modal-body"></div>
+                        <div class="modal-footer">
+                            <a href="#" class="btn btn-rose btn-link" target="_blank">Visitar sitio</a>
+                            <button type="button" class="btn btn-warning">
+                                <i class="fa fa-star"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  End Modal -->
+        </div>
 
     </div>
 
@@ -178,7 +225,7 @@
             }
         }
 
-        $('#hits').on('click', '.btn-star' ,function (e) {
+        $('#hits').on('click', '.btn-star', function (e) {
             var btn = this;
             var id = $(this).data('id');
             $.ajax({
@@ -279,6 +326,30 @@
                 return '/img/' + user.avatar;
             }
             return user.github_user.avatar;
+        }
+
+        $('#hits').on('click', '.btn-modal', function (e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            $.ajax({
+                url: '/api/resource/' + id,
+                method: 'GET',
+                dataType: 'JSON',
+                success: function (response) {
+                    setModal(response.data.resource);
+                },
+                error: function () {
+                    notify('error', 'Ocurrio un problema')
+                }
+            });
+            $('#myModal').modal('show');
+        });
+
+        function setModal(resource) {
+            console.log(resource);
+            $('.modal-title').html(resource.name);
+            $('.modal-body').html(resource.description);
+            $('.btn-link').attr('href', resource.link);
         }
 
     </script>

@@ -61,14 +61,16 @@ class ResourceController extends Controller
         }
         $resource->language_id = $request->language_id;
         $resource->link = $request->link;
+        if (strlen($resource->description) > 350) {
+            $resource->short_description = substr($resource->description, 0, 350) . '...';
+        } else {
+            $resource->short_description = $request->description;
+        }
         $resource->description = $request->description;
         $resource->tags = $request->tags;
 
         $resource->save();
 
-        //return view('recursos'); //This will cause errors if the view expects data
-        //return url('/recursos'); url() prints the url passed as a parameter
-        //return redirect('/recursos'); //Make a redirect instead of a view
         return back()->with('success', 'Recurso creado satisfactoriamente');
     }
 
@@ -78,8 +80,13 @@ class ResourceController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        if ($request->ajax()) {
+            $resource = Resource::find($id);
+            return response()->json(['status' => 200, 'data' => compact('resource')]);
+        }
+
         $resource = Resource::find($id);
         dd($resource);
     }

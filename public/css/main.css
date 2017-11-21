@@ -166,3 +166,14 @@ footer {
 .filter-counter {
     color: #e91e63;
 }
+
+.modal .modal-dialog {
+    margin-top: 100px;
+}
+
+@media (min-width: 768px) {
+    .modal-dialog {
+        width: 75%;
+        margin: 30px auto;
+    }
+}
