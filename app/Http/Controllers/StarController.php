@@ -118,6 +118,12 @@ class StarController extends Controller
             $star->user_id = $id_usuario;
             $star->save();
 
+            /** Trying to make a chainable update to resources */
+            $resource = $star->resource;
+            $resource->updated_at = date("Y-m-d H:i:s");
+            $resource->save();
+
+
             return response()->json([
                 'status' => 'success',
                 'message' => 'You starred this!'

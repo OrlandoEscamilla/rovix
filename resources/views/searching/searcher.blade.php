@@ -13,6 +13,7 @@
                                value="{{$searching}}"/>
                     </div>
                     <div id="types"></div>
+                    <div id="sorting"></div>
                 </div>
             </div>
         </div>
@@ -275,6 +276,17 @@
         );
 
         search.addWidget(
+            instantsearch.widgets.sortBySelector({
+                container: '#sorting',
+                indices: [
+                    {name: 'resources', label: 'Lo más nuevo'},
+                    {name: 'Más estrellados', label: 'Lo más estrellado'}
+                ],
+                label:'Ordenar por:'
+            })
+        );
+
+        search.addWidget(
             instantsearch.widgets.hits({
                 container: '#hits',
                 hitsPerPage: 2,
@@ -286,7 +298,6 @@
                     item: function (item) {
                         item.created_at = diffForHumans(item.created_at);
                         item.avatar = avatar(item.user);
-                        item.stars = item.stars.length;
                         return item;
                     }
                 }
@@ -343,6 +354,7 @@
                 data: {id: id},
                 dataType: 'JSON',
                 success: function (response) {
+                    console.log(response);
                     if (response.status === 'success') {
                         var counter = parseInt($(btn).find('.star-counter').html());
                         counter++;

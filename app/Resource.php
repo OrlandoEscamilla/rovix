@@ -44,9 +44,9 @@ class Resource extends Model
         $this->language;
         $this->type;
         $this->user->githubUser;
-        $this->stars;
+        $this->stars = $this->stars()->count();
         $resource = $this->toArray();
-        unset($resource['description'], $resource['updated_at']);
+        unset($resource['description'], $resource['updated_at'], $resource['deleted_at']);
         return $resource;
 
         /** With a custom relationship structure */
