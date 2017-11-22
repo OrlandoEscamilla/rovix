@@ -140,7 +140,7 @@
                         <a href="#">@{{name}}</a>
                     </h4>
                     <p>
-                        @{{description}}
+                        @{{short_description}}
                     </p>
                     <div class="footer">
                         <div class="author">
@@ -190,7 +190,7 @@
                         <div class="modal-body"></div>
                         <div class="modal-footer">
                             <a href="#" class="btn btn-rose btn-link" target="_blank">Visitar sitio</a>
-                            <button type="button" class="btn btn-warning">
+                            <button type="button" class="btn btn-warning btn-star-modal" style="margin-right: 1em">
                                 <i class="fa fa-star"></i>
                             </button>
                         </div>
@@ -218,9 +218,9 @@
         };
 
         function notify(type, message) {
-            if (type == 'success') {
+            if (type === 'success') {
                 toastr.success(message);
-            } else if (type == 'error') {
+            } else if (type === 'error') {
                 toastr.error(message);
             }
         }
@@ -228,27 +228,13 @@
         $('#hits').on('click', '.btn-star', function (e) {
             var btn = this;
             var id = $(this).data('id');
-            $.ajax({
-                url: '{{url('/star/fav')}}',
-                method: 'POST',
-                data: {id: id},
-                dataType: 'JSON',
-                success: function (response) {
-                    console.log(response);
-                    if (response.status === 'success') {
-                        var counter = parseInt($(btn).find('.star-counter').html());
-                        console.log(counter);
-                        counter++;
-                        $(btn).find('.star-counter').html(counter);
-                        notify(response.status, response.message);
-                    } else {
-                        notify(response.status, response.message);
-                    }
-                },
-                error: function (response) {
-                    notify('error', 'You need to login to fav');
-                }
-            });
+            ajaxStarItem(id, btn);
+        });
+
+        $('.btn-star-modal').click(function () {
+            var btn = this;
+            var id = $(this).data('id');
+            $('.btn-star[data-id="' + id + '"]').trigger('click');
         });
 
         $('.close').click(function (e) {
@@ -256,9 +242,7 @@
                 url: '{{'/messages/close/signin'}}',
                 method: 'POST',
                 dataType: 'JSON',
-                success: function (response) {
-                    console.log(response);
-                }
+                success: function (response) {}
             });
         });
 
@@ -346,10 +330,32 @@
         });
 
         function setModal(resource) {
-            console.log(resource);
             $('.modal-title').html(resource.name);
             $('.modal-body').html(resource.description);
             $('.btn-link').attr('href', resource.link);
+            $('.btn-star-modal').attr('data-id', resource.id);
+        }
+
+        function ajaxStarItem(id, btn) {
+            $.ajax({
+                url: '{{url('/star/fav')}}',
+                method: 'POST',
+                data: {id: id},
+                dataType: 'JSON',
+                success: function (response) {
+                    if (response.status === 'success') {
+                        var counter = parseInt($(btn).find('.star-counter').html());
+                        counter++;
+                        $(btn).find('.star-counter').html(counter);
+                        notify(response.status, response.message);
+                    } else {
+                        notify(response.status, response.message);
+                    }
+                },
+                error: function (response) {
+                    notify('error', 'You need to login to fav');
+                }
+            });
         }
 
     </script>

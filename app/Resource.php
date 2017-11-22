@@ -45,7 +45,9 @@ class Resource extends Model
         $this->type;
         $this->user->githubUser;
         $this->stars;
-        return $this->toArray();
+        $resource = $this->toArray();
+        unset($resource['description'], $resource['updated_at']);
+        return $resource;
 
         /** With a custom relationship structure */
         /*$array = $this->toArray();

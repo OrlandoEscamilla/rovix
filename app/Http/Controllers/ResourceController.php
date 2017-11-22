@@ -61,8 +61,8 @@ class ResourceController extends Controller
         }
         $resource->language_id = $request->language_id;
         $resource->link = $request->link;
-        if (strlen($resource->description) > 350) {
-            $resource->short_description = substr($resource->description, 0, 350) . '...';
+        if (strlen($request->description) > 350) {
+            $resource->short_description = substr($request->description, 0, 350) . '...';
         } else {
             $resource->short_description = $request->description;
         }
