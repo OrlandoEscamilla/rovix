@@ -45,7 +45,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Recursos <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/buscar">Buscador</a></li>
+                        <li><a href="/search">Buscador</a></li>
                         <li><a href="#"><i class="fa fa-cog fa-spin"></i> Guías</a></li>
                         <li><a href="#"><i class="fa fa-cog fa-spin"></i> Plataformas de aprendizaje</a></li>
                         {{--<li class="divider"></li>--}}

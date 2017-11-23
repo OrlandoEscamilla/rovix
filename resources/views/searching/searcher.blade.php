@@ -125,8 +125,10 @@
                     <span class="checkbox-material">
                         <span class="check"></span>
                     </span>
-                    @{{label}} <span
-                            class="filter-counter">@{{#helpers.formatNumber}}@{{count}}@{{/helpers.formatNumber}}</span>
+                    @{{label}}
+                    <span class="filter-counter">
+                        @{{#helpers.formatNumber}}@{{count}}@{{/helpers.formatNumber}}
+                    </span>
                 </label>
             </div>
         </script>
@@ -235,7 +237,11 @@
         $('.btn-star-modal').click(function () {
             var btn = this;
             var id = $(this).data('id');
-            $('.btn-star[data-id="' + id + '"]').trigger('click');
+            if ($('.btn-star[data-id="' + id + '"]').length) {
+                $('.btn-star[data-id="' + id + '"]').trigger('click');
+            } else {
+                notify('error', 'You need to login to fav!')
+            }
         });
 
         $('.close').click(function (e) {
@@ -243,7 +249,8 @@
                 url: '{{'/messages/close/signin'}}',
                 method: 'POST',
                 dataType: 'JSON',
-                success: function (response) {}
+                success: function (response) {
+                }
             });
         });
 
@@ -282,7 +289,7 @@
                     {name: 'resources', label: 'Lo más nuevo'},
                     {name: 'Más estrellados', label: 'Lo más estrellado'}
                 ],
-                label:'Ordenar por:'
+                label: 'Ordenar por:'
             })
         );
 
