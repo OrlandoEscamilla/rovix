@@ -57,17 +57,17 @@
                                             <td><a href="{{$resource->link}}" target="_blank">{{$resource->link}}</a>
                                             </td>
                                             <td>{{$resource->language->name}}</td>
-                                            <td class="td-actions">
+                                            <td class="td-actions text-center">
                                                 <a href="{{url("/resource/$resource->id/edit")}}"
                                                    class="btn btn-success btn-simple">
                                                     <i class="material-icons">edit</i>
                                                 </a>
-                                                <a href="#" class="btn btn-danger btn-simple">
+                                                {{--<a href="#" class="btn btn-danger btn-simple">
                                                     <i class="material-icons">close</i>
                                                 </a>
                                                 {!! Form::open(['url' => "/resource/$resource->id", 'method' => 'DELETE', 'class' => 'inline-block actions']) !!}
                                                 {{Form::submit('Eliminar', ['class' => 'btn btn-sm btn-danger', 'style' => 'display: none'])}}
-                                                {!! Form::close() !!}
+                                                {!! Form::close() !!}--}}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -111,6 +111,29 @@
             $(this).parent().addClass('active').siblings().removeClass('active');
             $('#table-resources').show().siblings().hide();
         });
+
+        var placeholder =
+            "Recomiendo este recurso porque...\n\n" +
+            "-----\n" +
+            "¿Algún consejo o nota adicional?\n\n" +
+            "-----\n" +
+            "##### No te olvides de borrar esta sección de ayuda!\n\n" +
+            "**Presiona CTRL + P para visualizar el etiquetado**\n\n" +
+            "*Presiona el botón de interrogación (?) para visualizar la guía Markdown*\n\n" +
+            "##### No te olvides de borrar esta sección de ayuda!";
+
+        var text_editor = new SimpleMDE({
+            "autoDownloadFontAwesome": false,
+            "element": document.querySelector('#text-editor'),
+            "hideIcons": ["image", "side-by-side", "fullscreen"],
+            "initialValue": placeholder,
+            "spellChecker": false,
+            "status": false
+        });
+
+        /*document.querySelector('#btn-show-text').addEventListener('click', function(){
+         console.log(simplemde.value());
+         });*/
 
     </script>
 @endsection

@@ -24,6 +24,7 @@
           href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.2.4/dist/instantsearch.min.css">
     <link rel="stylesheet" type="text/css"
           href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.2.4/dist/instantsearch-theme-algolia.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 
     <title>Rovix: Mapeando conocimiento</title>
 </head>
@@ -80,6 +81,9 @@
 <!-- Moment JS -->
 <script src="https://cdn.jsdelivr.net/npm/moment@2.19.2/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/locale/es.js"></script>
+
+<!-- SimpleMDE -->
+<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 
 <script type="text/javascript">
     /*$().ready(function () {

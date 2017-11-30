@@ -2,15 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Badge;
 use App\Language;
 use App\Resource;
 use App\Type;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Parsedown;
 
 class ResourceController extends Controller
 {
+    /**
+     * ResourceController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -52,24 +62,31 @@ class ResourceController extends Controller
             'description' => 'required'
         ]);
 
+        $user = Auth::id();
+
         $resource = new Resource;
         $resource->name = $request->name;
-        $resource->user_id = session('usuario_id');
+        $resource->user_id = $user;
         $resource->type_id = $request->type_id;
         if (isset($request->has_cost) && $request->has_cost != null) {
             $resource->has_cost = 1;
         }
         $resource->language_id = $request->language_id;
         $resource->link = $request->link;
+
+        $mdToHtml = Parsedown::instance()->setBreaksEnabled(false)->text($request->description);
         if (strlen($request->description) > 350) {
-            $resource->short_description = substr($request->description, 0, 350) . '...';
+            //$resource->short_description = substr($request->description, 0, 350) . '...';
+            $resource->short_description = substr($mdToHtml, 0, 350) . '...';
         } else {
-            $resource->short_description = $request->description;
+            //$resource->short_description = $request->description;
+            $resource->short_description = $mdToHtml;
         }
         $resource->description = $request->description;
         $resource->tags = $request->tags;
-
         $resource->save();
+
+        $this->assignMedal($user);
 
         return back()->with('success', 'Recurso creado satisfactoriamente');
     }
@@ -88,7 +105,7 @@ class ResourceController extends Controller
         }
 
         $resource = Resource::find($id);
-        dd($resource);
+        //dd($resource);
     }
 
     /**
@@ -153,5 +170,20 @@ class ResourceController extends Controller
     {
         Resource::destroy($id);
         return back()->with('success', 'Registro eliminado satisfactoriamente');
+    }
+
+    public function assignMedal($user)
+    {
+        $recursos = User::find($user)->resources()->count();
+        if (in_array($recursos, [1, 5, 10, 25, 50, 100])) {
+            $has_medal = Badge::where('user_id', $user)->where('name', $recursos . ' Recursos')->first();
+            if (!$has_medal) {
+                $badge = new Badge;
+                $badge->user_id = $user;
+                $badge->name = $recursos . ' Recursos';
+                $badge->image = $recursos . '.png';
+                $badge->save();
+            }
+        }
     }
 }

@@ -68,7 +68,39 @@
                     </div>
                 </div>
             </div>
-
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="content">
+                        <h3 class="category-social">Logros</h3>
+                        <br>
+                        <div class="badge-container">
+                            @foreach($user->badges as $badge)
+                                <div class="badge">
+                                    <img src="img/badges/{{$badge->image}}" alt="">
+                                </div>
+                            @endforeach
+                            {{--<div class="badge">
+                                <img src="img/badges/1.png" alt="">
+                            </div>
+                            <div class="badge">
+                                <img src="img/badges/5.png" alt="">
+                            </div>
+                            <div class="badge">
+                                <img src="img/badges/10.png" alt="">
+                            </div>
+                            <div class="badge">
+                                <img src="img/badges/25.png" alt="">
+                            </div>
+                            <div class="badge">
+                                <img src="img/badges/50.png" alt="">
+                            </div>
+                            <div class="badge">
+                                <img src="img/badges/100.png" alt="">
+                            </div>--}}
+                        </div>
+                    </div>
+                </div>
+            </div>
             {{--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog">

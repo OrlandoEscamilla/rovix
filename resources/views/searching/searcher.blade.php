@@ -14,6 +14,7 @@
                     </div>
                     <div id="types"></div>
                     <div id="sorting"></div>
+                    <div id="sorting-price"></div>
                 </div>
             </div>
         </div>
@@ -142,9 +143,8 @@
                     <h4 class="card-title">
                         <a href="#">@{{name}}</a>
                     </h4>
-                    <p>
-                        @{{short_description}}
-                    </p>
+                    {{--<textarea id="md_viewer_preview">@{{short_description}}</textarea>--}}
+                    <p>@{{short_description}}</p>
                     <div class="footer">
                         <div class="author">
                             <a href="#">
@@ -190,7 +190,9 @@
                             </button>
                             <h4 class="modal-title"></h4>
                         </div>
-                        <div class="modal-body"></div>
+                        <div class="modal-body">
+                            <textarea id="md-viewer" cols="30" rows="10"></textarea>
+                        </div>
                         <div class="modal-footer">
                             <a href="#" class="btn btn-rose btn-link" target="_blank">Visitar sitio</a>
                             <button type="button" class="btn btn-warning btn-star-modal" style="margin-right: 1em">
@@ -220,13 +222,21 @@
             "positionClass": "toast-bottom-right"
         };
 
-        function notify(type, message) {
-            if (type === 'success') {
-                toastr.success(message);
-            } else if (type === 'error') {
-                toastr.error(message);
-            }
-        }
+        var md_viewer = new SimpleMDE({
+            "autoDownloadFontAwesome": false,
+            "element": document.querySelector('#md-viewer'),
+            "spellChecker": false,
+            "status": false,
+            "toolbar": false,
+        });
+
+        /*var md_viewer_preview = new SimpleMDE({
+            "autoDownloadFontAwesome": false,
+            "element": document.querySelector('#md-viewer-preview'),
+            "spellChecker": false,
+            "status": false,
+            "toolbar": false,
+        });*/
 
         $('#hits').on('click', '.btn-star', function (e) {
             var btn = this;
@@ -287,11 +297,23 @@
                 container: '#sorting',
                 indices: [
                     {name: 'resources', label: 'Lo más nuevo'},
-                    {name: 'Más estrellados', label: 'Lo más estrellado'}
+                    {name: 'Más estrellados', label: 'Lo más estrellado'},
                 ],
                 label: 'Ordenar por:'
             })
         );
+
+        /*search.addWidget(
+            instantsearch.widgets.sortBySelector({
+                container: '#sorting-price',
+                indices: [
+                    {name: 'resources', label: 'Todos'},
+                    {name: 'Gratis', label: 'Gratis'},
+                    //{name: 'De pago', label: 'De pago'},
+                ],
+                label: 'Precio:'
+            })
+        );*/
 
         search.addWidget(
             instantsearch.widgets.hits({
@@ -305,6 +327,7 @@
                     item: function (item) {
                         item.created_at = diffForHumans(item.created_at);
                         item.avatar = avatar(item.user);
+                        item.short_description = strip(item.short_description);
                         return item;
                     }
                 }
@@ -330,6 +353,12 @@
             return user.github_user.avatar;
         }
 
+        function strip(html) {
+            var tmp = document.createElement("DIV");
+            tmp.innerHTML = html;
+            return tmp.textContent||tmp.innerText;
+        }
+
         $('#hits').on('click', '.btn-modal', function (e) {
             e.preventDefault();
             var id = $(this).data('id');
@@ -349,7 +378,10 @@
 
         function setModal(resource) {
             $('.modal-title').html(resource.name);
-            $('.modal-body').html(resource.description);
+            if (md_viewer.isPreviewActive()) {
+                md_viewer.togglePreview();
+            }
+            md_viewer.value(resource.description).togglePreview();
             $('.btn-link').attr('href', resource.link);
             $('.btn-star-modal').attr('data-id', resource.id);
         }
@@ -375,6 +407,14 @@
                     notify('error', 'You need to login to fav');
                 }
             });
+        }
+
+        function notify(type, message) {
+            if (type === 'success') {
+                toastr.success(message);
+            } else if (type === 'error') {
+                toastr.error(message);
+            }
         }
 
     </script>

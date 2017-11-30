@@ -12,9 +12,15 @@
     {{Form::select('type_id', $types, (isset($recurso) ? $recurso->type_id : ''), ['class' => 'select form-control'])}}
 </div>
 <div class="form-group">
-    <div class="togglebutton">
+    {{--<div class="togglebutton">
         <label>
-            {{Form::checkbox('has_cost', '', (isset($recurso) and $recurso->has_cost == 1 ? true : false))}}
+            {{Form::checkbox('has_cost', 'false', (isset($recurso) and $recurso->has_cost == 1 ? true : false))}}
+            Es un recurso de pago
+        </label>
+    </div>--}}
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" name="has_cost">
             Es un recurso de pago
         </label>
     </div>
@@ -32,7 +38,7 @@
 </div>
 <div class="form-group">
     <label>Descripción:</label>
-    {{Form::textarea('description', (isset($recurso) ? $recurso->description : ''), ['class' => 'form-control', 'size' => '1x4'])}}
+    {{Form::textarea('description', (isset($recurso) ? $recurso->description : ''), ['id' => 'text-editor', 'class' => 'form-control', 'size' => '1x4'])}}
     @if($errors->has('description'))
         <span class="label label-danger">{{$errors->first('description')}}</span>
     @endif

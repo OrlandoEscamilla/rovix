@@ -171,13 +171,63 @@ footer {
     margin-top: 100px;
 }
 
+.ais-sort-by-selector {
+    margin-top: 0.5em;
+}
+
+.badge-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.badge {
+    width: 33%;
+    background: transparent;
+}
+
+.badge > img {
+    width: 100%;
+}
+
+.card [class*="cm-header-"] {
+    color: #444;
+}
+
+.CodeMirror, .CodeMirror-scroll {
+    min-height: 200px;
+}
+
 @media (min-width: 768px) {
     .modal-dialog {
         width: 75%;
         margin: 30px auto;
     }
+
+    .badge {
+        width: 16.66%;
+    }
+
+    .badge > img {
+        width: 50%;
+    }
 }
 
-.ais-sort-by-selector {
-    margin-top: 0.5em;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
