@@ -17,12 +17,15 @@ use Illuminate\Http\Request;
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/login', function (){
+    return redirect('/');
+});
 
 Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/perfil', 'MainController@getUserProfile');
+Route::get('/perfil', 'UserController@index');
 Route::get('/perfil/actualizar/{id}', 'UserController@edit');
 Route::post('/perfil/actualizar/{id}', 'UserController@update');
 

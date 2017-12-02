@@ -44,6 +44,6 @@ class User extends Authenticatable
 
     public function badges()
     {
-        return $this->hasMany('App\Badge')->orderBy('name', 'asc');
+        return $this->hasMany('App\Badge')/*->orderBy('name', 'asc')*/;
     }
 }

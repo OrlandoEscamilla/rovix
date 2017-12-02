@@ -18,7 +18,7 @@ class ResourceController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('checkAuth')->except(['show']);
     }
 
     /**
@@ -105,7 +105,7 @@ class ResourceController extends Controller
         }
 
         $resource = Resource::find($id);
-        //dd($resource);
+        dd($resource);
     }
 
     /**
@@ -153,7 +153,7 @@ class ResourceController extends Controller
         $resource->language_id = $request->language_id;
         $resource->link = $request->link;
         $resource->description = $request->description;
-        $resource->tags = '';
+        $resource->tags = $request->tags;
 
         $resource->save();
         //return back()->with('success', 'Recurso actualizado satisfactoriamente');

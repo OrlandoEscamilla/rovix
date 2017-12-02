@@ -74,29 +74,20 @@
                         <h3 class="category-social">Logros</h3>
                         <br>
                         <div class="badge-container">
-                            @foreach($user->badges as $badge)
-                                <div class="badge">
-                                    <img src="img/badges/{{$badge->image}}" alt="">
-                                </div>
-                            @endforeach
-                            {{--<div class="badge">
-                                <img src="img/badges/1.png" alt="">
-                            </div>
-                            <div class="badge">
-                                <img src="img/badges/5.png" alt="">
-                            </div>
-                            <div class="badge">
-                                <img src="img/badges/10.png" alt="">
-                            </div>
-                            <div class="badge">
-                                <img src="img/badges/25.png" alt="">
-                            </div>
-                            <div class="badge">
-                                <img src="img/badges/50.png" alt="">
-                            </div>
-                            <div class="badge">
-                                <img src="img/badges/100.png" alt="">
-                            </div>--}}
+                            @if(count($user->badges))
+                                @foreach($user->badges as $badge)
+                                    <div class="badge">
+                                        <img src="img/badges/{{$badge->image}}" alt="">
+                                    </div>
+                                @endforeach
+                            @else
+                                @component('components.notification')
+                                    @slot('type')
+                                        danger
+                                    @endslot
+                                    Obtén tu primera medalla al publicar un recurso!
+                                @endcomponent
+                            @endif
                         </div>
                     </div>
                 </div>

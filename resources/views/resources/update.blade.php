@@ -15,3 +15,16 @@
         </div>
     </div>
 @stop
+
+@section('script')
+    <script>
+        var text_editor = new SimpleMDE({
+            "autoDownloadFontAwesome": false,
+            "element": document.querySelector('#text-editor'),
+            "hideIcons": ["image", "side-by-side", "fullscreen"],
+            //"initialValue": placeholder,
+            "spellChecker": false,
+            "status": false
+        });
+    </script>
+@endsection

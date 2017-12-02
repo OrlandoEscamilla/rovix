@@ -61,58 +61,33 @@
         </div>
 
         <div class="col-md-4">
-            <div class="card">
-                <div class="content content-info">
-                    <h4 class="card-title">
-                        Top 3 Más Vistos
-                    </h4>
-                    <div class="card-description">
-                        <a href="#" style="color: #FFF; display: block;">
-                            <i class="fa fa-crosshairs" style="font-weight: bold;"></i>
-                            <span style="margin-left: 5px; text-decoration: underline;">
-                                PHP: The Good Practices
-                            </span>
-                        </a>
-                        <a href="#" style="color: #FFF; display: block;">
-                            <i class="fa fa-crosshairs" style="font-weight: bold;"></i>
-                            <span style="margin-left: 5px; text-decoration: underline;">
-                                From Zero to Hero: Python API Restful
-                            </span>
-                        </a>
-                        <a href="#" style="color: #FFF; display: block;">
-                            <i class="fa fa-crosshairs" style="font-weight: bold;"></i>
-                            <span style="margin-left: 5px; text-decoration: underline;">
-                                Javascript: Lo bueno y lo malo
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            @if(count($topViewed))
+                @component('components.top-three', ['elements' => $topViewed['elements']])
+                    @slot('type')
+                        {{$topViewed['type']}}
+                    @endslot
+                    @slot('title')
+                        {{$topViewed['title']}}
+                    @endslot
+                @endcomponent
+            @endif
 
-            <div class="card">
-                <div class="content content-warning">
-                    <h4 class="card-title">
-                        Top 3 Más Estrellados
-                    </h4>
-                    <div class="card-description">
-                        <a href="#" style="color: #FFF; display: block;">
-                            <i class="fa fa-crosshairs" style="font-weight: bold;"></i>
-                            <span style="margin-left: 5px; text-decoration: underline;">
-                                Android for dummies
-                            </span>
-                        </a>
-                        <a href="#" style="color: #FFF; display: block;">
-                            <i class="fa fa-crosshairs" style="font-weight: bold;"></i>
-                            <span style="margin-left: 5px; text-decoration: underline;">
-                                Clean Code
-                            </span>
-                        </a>
-                        <a href="#" style="color: #FFF; display: block;">
-                            <i class="fa fa-crosshairs" style="font-weight: bold;"></i>
-                            <span style="margin-left: 5px; text-decoration: underline;">
-                                Como se programa a martillazos
-                            </span>
-                        </a>
+            @if(count($topStarred))
+                @component('components.top-three', ['elements' => $topStarred['elements']])
+                    @slot('type')
+                        {{$topStarred['type']}}
+                    @endslot
+                    @slot('title')
+                        {{$topStarred['title']}}
+                    @endslot
+                @endcomponent
+            @endif
+
+            <div class="card card-algolia">
+                <div class="content">
+                    <h4 class="card-title"></h4>
+                    <div class="card-description text-center">
+                        <img src="img/algolia-logo.svg" alt="">
                     </div>
                 </div>
             </div>
@@ -231,12 +206,12 @@
         });
 
         /*var md_viewer_preview = new SimpleMDE({
-            "autoDownloadFontAwesome": false,
-            "element": document.querySelector('#md-viewer-preview'),
-            "spellChecker": false,
-            "status": false,
-            "toolbar": false,
-        });*/
+         "autoDownloadFontAwesome": false,
+         "element": document.querySelector('#md-viewer-preview'),
+         "spellChecker": false,
+         "status": false,
+         "toolbar": false,
+         });*/
 
         $('#hits').on('click', '.btn-star', function (e) {
             var btn = this;
@@ -304,16 +279,16 @@
         );
 
         /*search.addWidget(
-            instantsearch.widgets.sortBySelector({
-                container: '#sorting-price',
-                indices: [
-                    {name: 'resources', label: 'Todos'},
-                    {name: 'Gratis', label: 'Gratis'},
-                    //{name: 'De pago', label: 'De pago'},
-                ],
-                label: 'Precio:'
-            })
-        );*/
+         instantsearch.widgets.sortBySelector({
+         container: '#sorting-price',
+         indices: [
+         {name: 'resources', label: 'Todos'},
+         {name: 'Gratis', label: 'Gratis'},
+         //{name: 'De pago', label: 'De pago'},
+         ],
+         label: 'Precio:'
+         })
+         );*/
 
         search.addWidget(
             instantsearch.widgets.hits({
@@ -356,7 +331,7 @@
         function strip(html) {
             var tmp = document.createElement("DIV");
             tmp.innerHTML = html;
-            return tmp.textContent||tmp.innerText;
+            return tmp.textContent || tmp.innerText;
         }
 
         $('#hits').on('click', '.btn-modal', function (e) {

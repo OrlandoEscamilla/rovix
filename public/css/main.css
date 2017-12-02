@@ -124,9 +124,13 @@ footer {
     border-color: #333;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .header-2 .page-header .container {
         padding-top: 8vh;
+    }
+
+    .card-algolia img {
+        width: 50%;
     }
 }
 

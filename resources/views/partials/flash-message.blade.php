@@ -1,5 +1,5 @@
 @if ($message = Session::get('success'))
-    @component('components.alert')
+    @component('components.notification')
         @slot('type')
             success
         @endslot

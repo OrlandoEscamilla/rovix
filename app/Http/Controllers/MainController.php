@@ -122,6 +122,16 @@ class MainController extends Controller
     public function searcher(Request $request)
     {
         $searching = $request->searching;
-        return view('searching.searcher', compact('searching'));
+        $topViewed = [
+            'title' => 'Top 3 Más Vistos',
+            'elements' => ['PHP: The Good Practice', 'From Zero to Hero: Python API Restful', 'Javascript: Lo bueno y lo malo',],
+            'type' => 'info'
+        ];
+        $topStarred = [
+            'title' => 'Top 3 Más Estrellados',
+            'elements' => ['Android for Dummies', 'Clean Code', 'Como se programa a martillazos',],
+            'type' => 'warning'
+        ];
+        return view('searching.searcher', compact('searching', 'topViewed', 'topStarred'));
     }
 }

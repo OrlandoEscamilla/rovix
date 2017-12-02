@@ -9,13 +9,23 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     /**
+     * UserController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('checkAuth');
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        return view('profile.profile', compact('user'));
     }
 
     /**
