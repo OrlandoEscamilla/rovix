@@ -7,6 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description"
           content="Rovix es un mapeador de recursos dirigido principalmente a desarrolladores de sofware. Aquí podrás encontrar enlaces a libros, blogs, canales de youtube, repositorios, podcasts y más!">
+    <!-- One Signal -->
+    <link rel="manifest" href="/manifest.json">
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
@@ -27,6 +31,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 
     <title>Rovix: Mapeando conocimiento</title>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(["init", {
+            appId: "261e6a70-6609-4d7f-becd-c2652cc47205",
+            autoRegister: false,
+            notifyButton: {
+                enable: true /* Set to false to hide */
+            }
+        }]);
+    </script>
 </head>
 <body class="section-white">
 
