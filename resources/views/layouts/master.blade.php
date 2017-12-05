@@ -9,7 +9,6 @@
           content="Rovix es un mapeador de recursos dirigido principalmente a desarrolladores de sofware. Aquí podrás encontrar enlaces a libros, blogs, canales de youtube, repositorios, podcasts y más!">
     <!-- One Signal -->
     <link rel="manifest" href="/manifest.json">
-    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
 
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css"
@@ -100,8 +99,9 @@
 <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 
 <!-- OneSignal -->
-<script src="OneSignalSDKWorker.js"></script>
-<script src="OneSignalSDKUpdaterWorker.js"></script>
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+<script src="/OneSignalSDKWorker.js"></script>
+<script src="/OneSignalSDKUpdaterWorker.js"></script>
 
 <script type="text/javascript">
     /*$().ready(function () {
