@@ -30,16 +30,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 
     <title>Rovix: Mapeando conocimiento</title>
-    <script>
-        var OneSignal = window.OneSignal || [];
-        OneSignal.push(["init", {
-            appId: "261e6a70-6609-4d7f-becd-c2652cc47205",
-            autoRegister: false,
-            notifyButton: {
-                enable: true /* Set to false to hide */
-            }
-        }]);
-    </script>
 </head>
 <body class="section-white">
 
@@ -100,8 +90,18 @@
 
 <!-- OneSignal -->
 <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
-<script src="/OneSignalSDKWorker.js"></script>
-<script src="/OneSignalSDKUpdaterWorker.js"></script>
+<script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(["init", {
+        appId: "261e6a70-6609-4d7f-becd-c2652cc47205",
+        autoRegister: false,
+        notifyButton: {
+            enable: true /* Set to false to hide */
+        }
+    }]);
+</script>
+{{--<script src="/OneSignalSDKWorker.js"></script>
+<script src="/OneSignalSDKUpdaterWorker.js"></script>--}}
 
 <script type="text/javascript">
     /*$().ready(function () {
