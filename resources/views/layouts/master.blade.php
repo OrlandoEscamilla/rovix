@@ -111,8 +111,8 @@
         }
     }]);
 </script>--}}
-<script src="/resources/assets/js/OneSignalSDKWorker.js"></script>
-<script src="/resources/assets/js/OneSignalSDKUpdaterWorker.js"></script>
+<script src="/OneSignalSDKWorker.js"></script>
+<script src="/OneSignalSDKUpdaterWorker.js"></script>
 
 <script type="text/javascript">
     /*$().ready(function () {
