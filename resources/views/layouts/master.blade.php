@@ -7,13 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description"
           content="Rovix es un mapeador de recursos dirigido principalmente a desarrolladores de sofware. Aquí podrás encontrar enlaces a libros, blogs, canales de youtube, repositorios, podcasts y más!">
+
     <!-- One Signal -->
     <link rel="manifest" href="/manifest.json">
     <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
     <script>
         var OneSignal = window.OneSignal || [];
         OneSignal.push(["init", {
-            appId: "261e6a70-6609-4d7f-becd-c2652cc47205",
+            appId: "{{env('ONESIGNAL_APP_ID')}}",
             autoRegister: true,
             notifyButton: {
                 enable: true /* Set to false to hide */
@@ -99,9 +100,6 @@
 <!-- SimpleMDE -->
 <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 
-{{--<script src="/OneSignalSDKWorker.js"></script>
-<script src="/OneSignalSDKUpdaterWorker.js"></script>--}}
-
 <script type="text/javascript">
     $(document).ready(function () {
 
@@ -114,10 +112,6 @@
         }
     });
 </script>
-
 @yield('script')
-
 </body>
-
-
 </html>

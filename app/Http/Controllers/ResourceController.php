@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Badge;
+use App\Events\SendNotificationEvent;
 use App\Language;
+use App\Notification;
 use App\Resource;
 use App\Type;
 use App\User;
@@ -76,17 +78,15 @@ class ResourceController extends Controller
 
         $mdToHtml = Parsedown::instance()->setBreaksEnabled(false)->text($request->description);
         if (strlen($request->description) > 350) {
-            //$resource->short_description = substr($request->description, 0, 350) . '...';
             $resource->short_description = substr($mdToHtml, 0, 350) . '...';
         } else {
-            //$resource->short_description = $request->description;
             $resource->short_description = $mdToHtml;
         }
         $resource->description = $request->description;
         $resource->tags = $request->tags;
         $resource->save();
 
-        $this->assignMedal($user);
+        $this->assignMedal($user)->sendNotification($resource);
 
         return back()->with('success', 'Recurso creado satisfactoriamente');
     }
@@ -185,5 +185,17 @@ class ResourceController extends Controller
                 $badge->save();
             }
         }
+
+        return $this;
+    }
+
+    public function sendNotification($resource){
+        $notification = new Notification();
+        $notification->app_id = env('ONESIGNAL_APP_ID');
+        $notification->headings = ['en' => 'Rovix: nuevo recurso'];
+        $notification->contents = ['en' => $resource->name];
+        $notification->included_segments = ['All'];
+        event(new SendNotificationEvent($notification));
+        return $this;
     }
 }

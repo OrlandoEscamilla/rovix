@@ -11,13 +11,15 @@
 |
 */
 
+use App\Events\SendNotificationEvent;
+use App\Notification;
 use App\User;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/login', function (){
+Route::get('/login', function () {
     return redirect('/');
 });
 
@@ -50,6 +52,6 @@ Route::post('/star/fav', 'StarController@favHandler');
 
 Route::get('/search', 'MainController@searcher');
 
-/*Route::get('sesiones', function (Request $request){
-    $request->session()->forget('Sign-in');
-});*/
+Route::get('/notification', function () {
+
+});
