@@ -99,8 +99,8 @@
 <!-- SimpleMDE -->
 <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 
-<script src="/OneSignalSDKWorker.js"></script>
-<script src="/OneSignalSDKUpdaterWorker.js"></script>
+{{--<script src="/OneSignalSDKWorker.js"></script>
+<script src="/OneSignalSDKUpdaterWorker.js"></script>--}}
 
 <script type="text/javascript">
     $(document).ready(function () {
