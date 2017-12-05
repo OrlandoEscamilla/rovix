@@ -205,14 +205,6 @@
             "toolbar": false,
         });
 
-        /*var md_viewer_preview = new SimpleMDE({
-         "autoDownloadFontAwesome": false,
-         "element": document.querySelector('#md-viewer-preview'),
-         "spellChecker": false,
-         "status": false,
-         "toolbar": false,
-         });*/
-
         $('#hits').on('click', '.btn-star', function (e) {
             var btn = this;
             var id = $(this).data('id');
@@ -242,7 +234,7 @@
         const search = instantsearch({
             appId: '99T6Y4E2VG',
             apiKey: '39847ec74ca2eb54c004eeb69e8070dc',
-            indexName: 'resources',
+            indexName: '{{env('SCOUT_PREFIX', '').'resources'}}',
             urlSync: false
         });
 
@@ -271,7 +263,7 @@
             instantsearch.widgets.sortBySelector({
                 container: '#sorting',
                 indices: [
-                    {name: 'resources', label: 'Lo más nuevo'},
+                    {name: '{{env('SCOUT_PREFIX', '').'resources'}}', label: 'Lo más nuevo'},
                     {name: 'Más estrellados', label: 'Lo más estrellado'},
                 ],
                 label: 'Ordenar por:'
