@@ -32,7 +32,7 @@
                     </li>
                 @endif
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Recursos <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Secciones <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/search">Buscador</a></li>
                         <li class="divider"></li>

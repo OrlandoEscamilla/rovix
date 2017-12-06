@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\BitbucketUser;
+use App\Events\SendEmailEvent;
 use App\GithubUser;
+use App\Mail;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +17,6 @@ class LoginController extends Controller
 
     public function __construct()
     {
-        //$this->middleware('checkAuth')->only('index');
         $this->middleware('guest')->only('index', 'login', 'signUpForm', 'signUp');
     }
 
@@ -73,7 +74,6 @@ class LoginController extends Controller
      */
     public function redirectToProvider($provider)
     {
-        //return Socialite::driver($provider)->redirect();
         return Socialite::with($provider)->redirect();
     }
 
@@ -85,8 +85,6 @@ class LoginController extends Controller
     public function handleProviderCallback($provider)
     {
         $user = Socialite::driver($provider)->user();
-
-        //dd($user);
 
         if ($this->findOrCreateUser($user, $provider)) {
             return redirect('/');
@@ -121,24 +119,26 @@ class LoginController extends Controller
                     $newUser = User::where('github_id', $user->id)->first();
                 }
 
-            } else if ($provider == 'bitbucket') {
-                $bitbucketUser = User::where('bitbucket_id', $user->id)->first();
+            } else {
+                if ($provider == 'bitbucket') {
+                    $bitbucketUser = User::where('bitbucket_id', $user->id)->first();
 
-                if (count($bitbucketUser)) {
+                    if (count($bitbucketUser)) {
 
-                    $newUser = $bitbucketUser;
-                } else {
-                    $isUser->bitbucket_id = $user->id;
-                    $isUser->save();
+                        $newUser = $bitbucketUser;
+                    } else {
+                        $isUser->bitbucket_id = $user->id;
+                        $isUser->save();
 
-                    BitbucketUser::create([
-                        'user_id' => $user->id,
-                        'nickname' => $user->nickname,
-                        'avatar' => $user->avatar,
-                        'website' => $user->user['website']
-                    ]);
+                        BitbucketUser::create([
+                            'user_id' => $user->id,
+                            'nickname' => $user->nickname,
+                            'avatar' => $user->avatar,
+                            'website' => $user->user['website']
+                        ]);
 
-                    $newUser = User::where('bitbucket_id', $user->id)->first();
+                        $newUser = User::where('bitbucket_id', $user->id)->first();
+                    }
                 }
             }
 
@@ -149,8 +149,10 @@ class LoginController extends Controller
             $newUser->email = $user->email;
             if ($provider == 'github') {
                 $newUser->github_id = $user->id;
-            } else if ($provider == 'bitbucket') {
-                $newUser->bitbucket_id = $user->id;
+            } else {
+                if ($provider == 'bitbucket') {
+                    $newUser->bitbucket_id = $user->id;
+                }
             }
             $newUser->save();
 
@@ -164,24 +166,37 @@ class LoginController extends Controller
                 ]);
 
                 $newUser = User::where('github_id', $user->id)->first();
-            } else if ($provider == 'bitbucket') {
-                BitbucketUser::create([
-                    'user_id' => $user->id,
-                    'nickname' => $user->nickname,
-                    'avatar' => $user->avatar,
-                    'website' => $user->user['website']
-                ]);
+            } else {
+                if ($provider == 'bitbucket') {
+                    BitbucketUser::create([
+                        'user_id' => $user->id,
+                        'nickname' => $user->nickname,
+                        'avatar' => $user->avatar,
+                        'website' => $user->user['website']
+                    ]);
 
-                $newUser = User::where('bitbucket_id', $user->id)->first();
+                    $newUser = User::where('bitbucket_id', $user->id)->first();
+                }
             }
 
+            $this->sendEmail($newUser);
         }
 
         session(['email' => $newUser->email]);
         session(['usuario_id' => $newUser->id]);
         Auth::loginUsingId($newUser->id);
-
         return true;
+    }
+
+    public function sendEmail($user)
+    {
+        $mail = new Mail;
+        $mail->sender = ['email' => 'noreply@rovix.xyz', 'name' => 'Rovix Mailer'];
+        $mail->recipient = ['email' => $user->email, 'name' => $user->name];
+        $mail->subject = 'Bienvenid@ a Rovix';
+        $mail->template = 'welcome';
+        event(new SendEmailEvent($mail));
+        return $this;
     }
 
     public function logout(Request $request)

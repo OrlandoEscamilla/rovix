@@ -25,5 +25,6 @@ que ya te han sido de utilidad.
 **Por implementar**
 -
 - Sistema de logros [X]
-- Notificaciones push [ ]
+- Notificaciones push [X]
+- Redis [ ]
 - Android App  [ ]

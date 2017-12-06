@@ -52,6 +52,7 @@ Route::post('/star/fav', 'StarController@favHandler');
 
 Route::get('/search', 'MainController@searcher');
 
-Route::get('/notification', function () {
-
+Route::get('/email', function () {
+    return view('email.send');
 });
+Route::post('/email', 'EmailController@send');
