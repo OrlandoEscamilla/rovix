@@ -12,7 +12,7 @@
                         <input type="text" class="form-control" name="searching" id="search-box"
                                value="{{$searching}}"/>
                     </div>
-                    <div id="types"></div>
+                    <div id="formats"></div>
                     <div id="sorting"></div>
                     <div id="sorting-price"></div>
                 </div>
@@ -112,8 +112,8 @@
         <script type="text/html" id="hit-card">
             <div class="card searching-card">
                 <div class="content">
-                    <h6 class="category text-@{{type.class}}">
-                        <i class="fa fa-@{{type.icon}}"></i> @{{type.name}}
+                    <h6 class="category text-@{{format.class}}">
+                        <i class="fa fa-@{{format.icon}}"></i> @{{format.name}}
                     </h6>
                     <h4 class="card-title">
                         <a href="#">@{{name}}</a>
@@ -248,8 +248,8 @@
 
         search.addWidget(
             instantsearch.widgets.refinementList({
-                container: '#types',
-                attributeName: 'type.name',
+                container: '#formats',
+                attributeName: 'format.name',
                 operator: 'or',
                 limit: 10,
                 templates: {
@@ -264,7 +264,7 @@
                 container: '#sorting',
                 indices: [
                     {name: '{{env('SCOUT_PREFIX', '').'resources'}}', label: 'Lo más nuevo'},
-                    {name: 'Más estrellados', label: 'Lo más estrellado'},
+                    {name: '{{env('SCOUT_PREFIX', '').'resources_ranking_starred'}}', label: 'Lo más popular'}
                 ],
                 label: 'Ordenar por:'
             })

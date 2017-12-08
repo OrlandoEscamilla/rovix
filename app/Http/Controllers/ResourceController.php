@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Badge;
 use App\Events\SendNotificationEvent;
+use App\Format;
 use App\Language;
 use App\Notification;
 use App\Resource;
+use App\ResourceView;
 use App\Type;
 use App\User;
 use Illuminate\Http\Request;
@@ -31,12 +33,12 @@ class ResourceController extends Controller
     public function index()
     {
         $resources = User::find(session('usuario_id'))->resources()->paginate(6);
-        //$resources = User::find(session('usuario_id'))->resources;
         $languages = Language::pluck('name', 'id');
+        $formats = Format::pluck('name', 'id');
         $types = Type::pluck('name', 'id');
         $method = 'POST';
         $url = '/resource';
-        return view('resources.resources', compact('resources', 'languages', 'types', 'method', 'url'));
+        return view('resources.resources', compact('resources', 'languages', 'types', 'formats', 'method', 'url'));
     }
 
     /**
@@ -61,21 +63,22 @@ class ResourceController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'link' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'tags' => 'required'
         ]);
 
         $user = Auth::id();
 
         $resource = new Resource;
-        $resource->name = $request->name;
         $resource->user_id = $user;
         $resource->type_id = $request->type_id;
+        $resource->name = $request->name;
+        $resource->format_id = $request->format_id;
+        $resource->language_id = $request->language_id;
         if (isset($request->has_cost) && $request->has_cost != null) {
             $resource->has_cost = 1;
         }
-        $resource->language_id = $request->language_id;
         $resource->link = $request->link;
-
         $mdToHtml = Parsedown::instance()->setBreaksEnabled(false)->text($request->description);
         if (strlen($request->description) > 350) {
             $resource->short_description = substr($mdToHtml, 0, 350) . '...';
@@ -101,6 +104,7 @@ class ResourceController extends Controller
     {
         if ($request->ajax()) {
             $resource = Resource::find($id);
+            ResourceView::create(['resource_id' => $resource->id]);
             return response()->json(['status' => 200, 'data' => compact('resource')]);
         }
 
@@ -123,12 +127,13 @@ class ResourceController extends Controller
 
         $resources = User::find(session('usuario_id'))->resources;
         $languages = Language::pluck('name', 'id');
+        $formats = Format::pluck('name', 'id');
         $types = Type::pluck('name', 'id');
         $method = 'PATCH';
 
         $url = "/resource/$recurso->id";
 
-        return view('resources.update', compact('resources', 'languages', 'types', 'method', 'url', 'recurso'));
+        return view('resources.update', compact('resources', 'languages', 'types', 'formats' ,'method', 'url', 'recurso'));
     }
 
     /**

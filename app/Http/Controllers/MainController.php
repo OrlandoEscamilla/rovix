@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Language;
+use App\QueriesTops;
 use App\Resource;
 use App\Type;
 use Illuminate\Http\Request;
@@ -10,11 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class MainController extends Controller
-{
+class MainController extends Controller {
 
-    public function recursos()
-    {
+    public function recursos() {
         $resources = Resource::all();
         $languages = Language::pluck('name', 'id');
         $types = Type::pluck('name', 'id');
@@ -23,8 +22,7 @@ class MainController extends Controller
         return view('recursos', compact('resources', 'languages', 'types', 'method', 'url'));
     }
 
-    public function buscar(Request $request)
-    {
+    public function buscar(Request $request) {
 
         $types = Type::all();
         $searching = (isset($request->searching) ? $request->searching : '');
@@ -82,8 +80,7 @@ class MainController extends Controller
         }
     }
 
-    public function getTypes($request)
-    {
+    public function getTypes($request) {
         $types = Type::pluck('name');
         $tipos = [];
         $busqueda = [];
@@ -108,28 +105,25 @@ class MainController extends Controller
         return $filtro;
     }
 
-    public function about()
-    {
+    public function about() {
         return view('about');
     }
 
-    public function getUserProfile()
-    {
+    public function getUserProfile() {
         $user = Auth::user();
         return view('profile', compact('user'));
     }
 
-    public function searcher(Request $request)
-    {
+    public function searcher(Request $request) {
         $searching = $request->searching;
         $topViewed = [
-            'title' => 'Top 3 Más Vistos',
-            'elements' => ['PHP: The Good Practice', 'From Zero to Hero: Python API Restful', 'Javascript: Lo bueno y lo malo',],
+            'title' => 'Top Más Vistos',
+            'elements' => QueriesTops::topStarred(),
             'type' => 'info'
         ];
         $topStarred = [
-            'title' => 'Top 3 Más Estrellados',
-            'elements' => ['Android for Dummies', 'Clean Code', 'Como se programa a martillazos',],
+            'title' => 'Top Más Estrellados',
+            'elements' => QueriesTops::topViewed(),
             'type' => 'warning'
         ];
         return view('searching.searcher', compact('searching', 'topViewed', 'topStarred'));

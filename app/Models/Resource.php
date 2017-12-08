@@ -6,43 +6,42 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 
-class Resource extends Model
-{
+class Resource extends Model {
     protected $fillable = ['name', 'type', 'has_cost', 'language', 'link', 'description', 'tags', 'user', 'short_description'];
 
     use SoftDeletes;
     use Searchable;
 
-    public function language()
-    {
+    public function language() {
         return $this->belongsTo('App\Language');
     }
 
-    public function type()
-    {
+    public function type() {
         return $this->belongsTo('App\Type');
     }
 
-    public function user()
-    {
+    public function format() {
+        return $this->belongsTo('App\Format');
+    }
+
+    public function user() {
         return $this->belongsTo('App\User');
     }
 
-    public function stars()
-    {
+    public function stars() {
         return $this->hasMany('App\Star');
     }
 
-    public function toSearchableArray()
-    {
-        /** With specific data */
-        /*$record = $this->toArray();
-        unset($record['created_at'], $record['updated_at'], $record['deleted_at']);
-        return $record;*/
+    public function views() {
+        return $this->hasMany('App\ResourceView');
+    }
+
+    public function toSearchableArray() {
 
         /** With relationships */
         $this->language;
         $this->type;
+        $this->format;
         $this->user->githubUser;
         $this->stars = $this->stars()->count();
         $resource = $this->toArray();

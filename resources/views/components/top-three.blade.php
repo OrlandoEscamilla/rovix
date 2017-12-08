@@ -7,7 +7,7 @@
             @foreach($elements as $element)
                 <a href="#" style="color: #FFF; display: block;">
                     <i class="fa fa-crosshairs" style="font-weight: bold;"></i>
-                    <span style="margin-left: 5px; text-decoration: underline;">
+                    <span style="margin-left: 5px; text-decoration: none;">
                         {{$element}}
                     </span>
                 </a>
