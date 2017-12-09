@@ -118,12 +118,12 @@ class MainController extends Controller {
         $searching = $request->searching;
         $topViewed = [
             'title' => 'Top Más Vistos',
-            'elements' => QueriesTops::topStarred(),
+            'elements' => QueriesTops::topViewed(),
             'type' => 'info'
         ];
         $topStarred = [
             'title' => 'Top Más Estrellados',
-            'elements' => QueriesTops::topViewed(),
+            'elements' => QueriesTops::topStarred(),
             'type' => 'warning'
         ];
         return view('searching.searcher', compact('searching', 'topViewed', 'topStarred'));
