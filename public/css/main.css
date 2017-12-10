@@ -14,6 +14,10 @@ footer {
 /*.header-2 .page-header .container {
     padding-top: 25vh;
 }*/
+body {
+    background: #E5E5E5 !important;
+    background: #fafafa !important;
+}
 
 .navbar.navbar-carbon {
     background-color: #444;
@@ -216,9 +220,50 @@ footer {
     }
 }
 
+.tarjeta {
+    background: #fff;
+    border: 1px solid #dfe0e0;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    border-radius: .25rem;
+    margin-bottom: 1em;
+}
 
+.tarjeta-imagen {
+    width: 100%;
+    border-bottom: 1px solid #DDDDDD;
+}
 
+.tarjeta-imagen img {
+    border-radius: 0.25rem 0.25rem 0 0;
+}
 
+.tarjeta-titulo {
+    margin: 0.5em 1em;
+    font-weight: 700;
+    font-family: "Roboto Slab", "Times New Roman", serif;
+}
+
+.tarjeta-titulo a:hover {
+    color: #e91e63;
+    color: black;
+}
+
+.tarjeta .tarjeta-contenido {
+    margin: 0.5em 1em;
+}
+
+.tarjeta-contenido_descripcion {
+    color: #888;
+}
+
+.tarjeta-footer {
+    margin: 0.5em 1em;
+    overflow: hidden;
+}
+
+.tarjeta-footer .btn {
+    float: right;
+}
 
 
 

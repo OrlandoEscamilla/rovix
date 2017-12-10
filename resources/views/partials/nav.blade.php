@@ -35,9 +35,9 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Secciones <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/search">Buscador</a></li>
+                        <li><a href="/platforms">Plataformas de aprendizaje</a></li>
                         <li class="divider"></li>
                         <li><a href="#"><i class="fa fa-cog fa-spin"></i> Guías (proximamente)</a></li>
-                        <li><a href="#"><i class="fa fa-cog fa-spin"></i> Plataformas de aprendizaje <br> (proximamente)</a></li>
                     </ul>
                 </li>
                 <li>

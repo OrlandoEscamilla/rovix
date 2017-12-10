@@ -56,3 +56,5 @@ Route::get('/email', function () {
     return view('email.send');
 });
 Route::post('/email', 'EmailController@send');
+
+Route::get('/platforms', 'PlatformController@index');
