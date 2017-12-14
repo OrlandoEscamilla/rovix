@@ -52,12 +52,12 @@
                     <div class="card">
                         <div class="content content-rose">
                             <h5 class="category-social">
-                                <i class="fa fa-twitter"></i> Twitter
+                                {{--<i class="fa fa-twitter"></i>--}}
                             </h5>
                             <h4 class="card-title">
-                                <a href="#">¿Te interesa sugerir alguna plataforma?</a>
+                                <a href="#">¿Consideras que nos falta alguna plataforma?</a>
                             </h4>
-                            <a href="#" class="btn btn-github">Llenar formulario</a>
+                            <a href="#" class="btn btn-github">Sugerir plataforma</a>
                         </div>
                     </div>
                 </div>

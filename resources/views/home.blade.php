@@ -37,88 +37,73 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <div class="cd-section" id="features">
 
         <div class="container">
-
-            <!--     *********     FEATURES 1      *********      -->
-
             <div class="features-1">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <h2 class="title">Estos son los tipos de recursos que encontrarás:</h2>
-                        {{--<h5 class="description">This is the paragraph where you can write more details about your
-                            product. Keep you user engaged by providing meaningful information. Remember that by this
-                            time, the
-                            user is curious, otherwise he wouldn't scroll to get here. Add a button if you want the user
-                            to
-                            see more.
-                        </h5>--}}
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <h2 class="title">Estos son los tipos de recursos que encontrarás</h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-sm-4">
+                            <div class="info">
+                                <div class="icon icon-default">
+                                    <i class="material-icons">book</i>
+                                </div>
+                                <h4 class="info-title">Libros</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="info">
+                                <div class="icon icon-danger">
+                                    <i class="fa fa-youtube"></i>
+                                </div>
+                                <h4 class="info-title">Canales</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="info">
+                                <div class="icon icon-rose">
+                                    <i class="material-icons">desktop_mac</i>
+                                </div>
+                                <h4 class="info-title">Cursos en linea</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="info">
+                                <div class="icon icon-success">
+                                    <i class="material-icons">rss_feed</i>
+                                </div>
+                                <h4 class="info-title">Guías y Blogs</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="info">
+                                <div class="icon icon-primary">
+                                    <i class="fa fa-git"></i>
+                                </div>
+                                <h4 class="info-title">Repositorios</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="info">
+                                <div class="icon icon-warning">
+                                    <i class="fa fa-podcast"></i>
+                                </div>
+                                <h4 class="info-title">Podcasts</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="row">
-
-                    <div class="col-sm-4">
-                        <div class="info">
-                            <div class="icon icon-default">
-                                <i class="material-icons">book</i>
-                            </div>
-                            <h4 class="info-title">Libros</h4>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="info">
-                            <div class="icon icon-danger">
-                                <i class="fa fa-youtube"></i>
-                            </div>
-                            <h4 class="info-title">Canales</h4>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="info">
-                            <div class="icon icon-rose">
-                                <i class="material-icons">desktop_mac</i>
-                            </div>
-                            <h4 class="info-title">Cursos en linea</h4>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="info">
-                            <div class="icon icon-success">
-                                <i class="material-icons">rss_feed</i>
-                            </div>
-                            <h4 class="info-title">Guías y Blogs</h4>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="info">
-                            <div class="icon icon-primary">
-                                <i class="fa fa-git"></i>
-                            </div>
-                            <h4 class="info-title">Repositorios</h4>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="info">
-                            <div class="icon icon-warning">
-                                <i class="fa fa-podcast"></i>
-                            </div>
-                            <h4 class="info-title">Podcasts</h4>
-                        </div>
-                    </div>
-
-                </div>
-
             </div>
-
-            <!--     *********    END FEATURES 1      *********      -->
-
         </div>
-
     </div>
 
     <div class="container">
