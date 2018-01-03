@@ -31,4 +31,4 @@ que ya te han sido de utilidad.
 
 **Agradecimientos**
 -
-- Armando Cifuentes G. (Functional tester). (armandocifuentes_1@hotmail.com)[armandocifuentes_1@hotmail.com]
+* [Armando Cifuentes G.](https://github.com/ArCiGo) (Functional Tester)
