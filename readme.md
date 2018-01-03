@@ -28,3 +28,7 @@ que ya te han sido de utilidad.
 - Notificaciones push [X]
 - Redis [ ]
 - Android App  [ ]
+
+**Agradecimientos**
+-
+- Armando Cifuentes G. (Functional tester). (armandocifuentes_1@hotmail.com)[armandocifuentes_1@hotmail.com]
